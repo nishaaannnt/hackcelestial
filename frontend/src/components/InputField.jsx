@@ -21,7 +21,7 @@ export default function InputField({
         </label>
       </div>
       <input
-        className="block border border-grey-light w-full p-3 rounded focus:ring-primary focus:border-primary"
+        className="block border border-grey-light w-full p-3 rounded focus:ring-primary focus:border-primary "
         type={type}
         placeholder={placeholder}
         value={value}

@@ -14,6 +14,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import User from "services/User";
 import unorm from "unorm";
 
 export default function Applicant() {
@@ -108,29 +109,23 @@ export default function Applicant() {
   };
 
   const handleDelete = (user) => {
-    axios
-      .delete(`${apiList.user}/${user}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        setPopup({
-          open: true,
-          icon: "success",
-          message: response.data.message,
-        });
-        setReloadContent(!reloadContent);
-        setIsOpen(false);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setPopup({
-          open: true,
-          icon: "error",
-          message: err.response.data.message,
-        });
+    try {
+      const response = User.deleteUser({ user: user });
+      setPopup({
+        open: true,
+        icon: "success",
+        message: response.data.message,
       });
+      setReloadContent(!reloadContent);
+      setIsOpen(false);
+    } catch (err) {
+      console.log(err.response);
+      setPopup({
+        open: true,
+        icon: "error",
+        message: err.response.data.message,
+      });
+    }
   };
 
   return (
@@ -274,11 +269,9 @@ export default function Applicant() {
               <button
                 key={i}
                 onClick={() => paginate(i + 1)}
-                className={`mx-1 px-3 py-1 bg-${
-                  selectedPage === i + 1 ? "yellow" : "white"
-                } text-black border hover:border-yellow-300 rounded ${
-                  selectedPage === i + 1 ? "bg-yellow-200" : ""
-                }`}
+                className={`mx-1 px-3 py-1 bg-${selectedPage === i + 1 ? "yellow" : "white"
+                  } text-black border hover:border-yellow-300 rounded ${selectedPage === i + 1 ? "bg-yellow-200" : ""
+                  }`}
               >
                 {i + 1}
               </button>

@@ -6,6 +6,7 @@ import axios from "axios";
 import isAuth from "libs/isAuth";
 import apiList from "../../../libs/apiList";
 import { userType } from "libs/isAuth";
+import Auth from "services/Auth";
 
 export default function SignIn({ login }) {
   const setPopup = useContext(SetPopupContext);
@@ -47,33 +48,31 @@ export default function SignIn({ login }) {
     });
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const verified = !Object.keys(inputErrorHandler).some((obj) => {
       return inputErrorHandler[obj].error;
     });
     if (verified) {
-      axios
-        .post(apiList.login, loginDetails)
-        .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("type", response.data.type);
-          localStorage.setItem("id", response.data._id);
-          setLoggedin(isAuth());
-          setPopup({
-            open: true,
-            icon: "success",
-            message: "Logged in successfully",
-          });
-          console.log(response);
-        })
-        .catch((err) => {
-          setPopup({
-            open: true,
-            icon: "warn",
-            message: err.response.data.message,
-          });
-          console.log(err.response);
+      try {
+        const response = await Auth.login(loginDetails);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("type", response.data.type);
+        localStorage.setItem("id", response.data._id);
+        setLoggedin(isAuth());
+        setPopup({
+          open: true,
+          icon: "success",
+          message: "Logged in successfully",
         });
+        console.log(response);
+      } catch (err) {
+        setPopup({
+          open: true,
+          icon: "warn",
+          message: err.response.data.message,
+        });
+        console.log(err.response);
+      }
     } else {
       setPopup({
         open: true,
@@ -162,11 +161,10 @@ export default function SignIn({ login }) {
 
           <button
             type="submit"
-            className={`mt-2 w-full font-semibold px-4 py-3 rounded-lg text-sm ${
-              allFieldsChecked
-                ? "bg-primary text-gray-500 hover:bg-[#F2994A] hover:text-black border-yellow-100 cursor-pointer"
-                : "bg-yellow-100 text-yellow-800 cursor-not-allowed border-yellow-100"
-            }`}
+            className={`mt-2 w-full font-semibold px-4 py-3 rounded-lg text-sm ${allFieldsChecked
+              ? "bg-primary text-gray-500 hover:bg-[#F2994A] hover:text-black border-yellow-100 cursor-pointer"
+              : "bg-yellow-100 text-yellow-800 cursor-not-allowed border-yellow-100"
+              }`}
           >
             Sign in
           </button>

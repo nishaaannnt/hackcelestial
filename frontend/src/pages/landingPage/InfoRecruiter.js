@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-import Loader from "components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCoins,
@@ -19,6 +17,7 @@ import apiList from "../../libs/apiList";
 import { Rating } from "@material-tailwind/react";
 import { userType } from "libs/isAuth";
 import { SetPopupContext } from "App";
+import User from "services/User";
 
 export default function InfoRecruiter() {
   const [hasAcceptedJob, setHasAcceptedJob] = useState(false);
@@ -86,18 +85,18 @@ export default function InfoRecruiter() {
         handleClose();
       });
   };
+  async function getuser() {
+    try {
+      let response = await User.getUser({ id: id })
+      console.log(response);
+      setCompany(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
-    let address = apiList.user;
-    axios
-      .get(`${address}/${id}`)
-      .then((response) => {
-        console.log(response);
-        setCompany(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getuser();
   }, []);
 
   useEffect(() => {
@@ -317,13 +316,13 @@ export default function InfoRecruiter() {
                             <div className="pl-1 flex mt-3 gap-2">
                               {job.skillsets
                                 ? job.skillsets.map((skill, index) => (
-                                    <div
-                                      key={index}
-                                      className="whitespace-nowrap rounded-lg bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white"
-                                    >
-                                      <span>{skill}</span>
-                                    </div>
-                                  ))
+                                  <div
+                                    key={index}
+                                    className="whitespace-nowrap rounded-lg bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white"
+                                  >
+                                    <span>{skill}</span>
+                                  </div>
+                                ))
                                 : null}
                             </div>
                           </>
@@ -336,11 +335,10 @@ export default function InfoRecruiter() {
                             {job.maxPositions - job.acceptedCandidates > 0 ? (
                               <Link
                                 className={`hover:opacity-80 ease-out duration-300 flex cursor-pointer items-center font-semibold 
-                                text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${
-                                  hasAcceptedJob
+                                text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${hasAcceptedJob
                                     ? "opacity-50 cursor-not-allowed"
                                     : ""
-                                }`}
+                                  }`}
                                 onClick={() => handleApply()}
                                 title={
                                   hasAcceptedJob

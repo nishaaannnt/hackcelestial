@@ -1,5 +1,5 @@
-import InputField from "components/InputField";
-import JobAd from "components/JobAd";
+import InputField from "./InputField";
+import JobAd from "./JobAd";
 import ReactQuill from "react-quill";
 import { useContext, useEffect, useState } from "react";
 
@@ -70,18 +70,6 @@ export default function JobCreator({ jobToEdit }) {
       description: "",
     }
   );
-
-  let isComplete =
-    job.title.length > 0 &&
-    job.maxApplicants.length > 0 &&
-    job.maxPositions.length > 0 &&
-    job.salary.length > 0 &&
-    job.deadline.length > 0 &&
-    job.skillsets.length > 0 &&
-    job.duration.length > 0 &&
-    job.jobType.length > 0 &&
-    job.location.length > 0 &&
-    job.description.length > 0;
 
   const modules = {
     toolbar: [
@@ -265,7 +253,7 @@ export default function JobCreator({ jobToEdit }) {
           />
         </tr>
         <div className="flex items-center pt-6">
-          {isComplete ? (
+          {true ? (
             <button
               onClick={() => handleUpdate()}
               className="text-center transform hover:-translate-y-1 hover:shadow-lg 

@@ -216,7 +216,7 @@ export default function JobAd({ job, tags, about, edit }) {
       {about && (
         <div>
           {/* LEFT */}
-          <div className="rounded-xl bg-slate-100 pd:pt-1 pt-1 shadow-sm">
+          <div className="rounded-xl bg-slate-50 pd:pt-1 pt-1 shadow-sm">
             <div className="w-11/12 mx-auto mt-10 pb-4">
               <div className="w-full flex items-center justify-between">
                 <div className="w-3/4 flex gap-2">
@@ -230,7 +230,7 @@ export default function JobAd({ job, tags, about, edit }) {
                   ))}
 
                   <div className="flex flex-col">
-                    <p className="text-xl font-semibold text-gray-700">
+                    <p className="text-xl font-semibold text-gray-600">
                       {about?.title}
                     </p>
                     <span className="text-base">{about?.location}</span>
@@ -257,14 +257,15 @@ export default function JobAd({ job, tags, about, edit }) {
               </div>
               <div className="flex justify-start md:mt-10 mt-10 mb-3 gap-2">
                 {" "}
+                <span className="font-semibold">Rating </span>
                 <Rating
                   value={about.rating !== -1 ? about.rating : null}
                   className="text-yellow-300"
                   readonly
                 />
-                <span className="font-semibold"> </span>
+                
                 <h6 className="md:text-xl text-lg font-bold text-gray-500">
-                  {1}
+                  {about.rating}
                 </h6>
               </div>
               <div className="flex gap-3">

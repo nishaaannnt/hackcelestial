@@ -147,7 +147,7 @@ const Myjob = ({ job }, index) => {
             <img
               className="w-14 h-14 rounded-2xl mr-4"
               key={index}
-              src={recruiter.profile}
+              src={recruiter.profile  || "company.png"}
               alt="Company logo"
             />
           ))}

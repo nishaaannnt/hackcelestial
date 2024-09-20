@@ -45,7 +45,7 @@ export default function Recruiter(props) {
           <div className="flex items-center text-left pb-4">
             <img
               className="w-16 h-16 rounded-2xl mr-4"
-              src={recruiter.profile}
+              src={recruiter.profile  || "company.png"}
               alt="Company logo"
             />
             <div>

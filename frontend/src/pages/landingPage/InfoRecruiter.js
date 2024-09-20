@@ -149,7 +149,7 @@ export default function InfoRecruiter() {
             <img
               alt="company logo"
               className="md:h-24 md:w-24 w-16 h-16 md:mr-6 mr-4 rounded-md"
-              src={company?.profile}
+              src={company?.profile  || "company.png"}
             />
 
             <div>
@@ -204,7 +204,7 @@ export default function InfoRecruiter() {
                       <div className="flex items-center text-left pb-4">
                         <img
                           className="w-14 h-14 rounded-2xl mr-4"
-                          src={company?.profile}
+                          src={company?.profile  || "company.png"}
                           alt="Company logo"
                         />
                         <div>

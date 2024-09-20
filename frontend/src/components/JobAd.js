@@ -75,7 +75,7 @@ export default function JobAd({ job, tags, about, edit }) {
               <img
                 alt="company logo"
                 className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-                src={recruiter.profile}
+                src={recruiter.profile || "company.png"}
                 key={index}
               />
             ))}
@@ -147,7 +147,7 @@ export default function JobAd({ job, tags, about, edit }) {
             <img
               alt="company logo"
               className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-              src={icon}
+              src={icon  || "company.png"}
             />
 
             <div>
@@ -224,7 +224,7 @@ export default function JobAd({ job, tags, about, edit }) {
                     <img
                       alt="company logo"
                       className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-                      src={recruiter.profile}
+                      src={recruiter.profile  || "company.png"}
                       key={index}
                     />
                   ))}

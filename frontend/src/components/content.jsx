@@ -96,7 +96,7 @@ export default function Jumbotron() {
         </main>
       ) : (
         <main className="bg-[#F5F4FA]">
-        <div className="text-center lg:w-7/12 w-12/12 ld:pt-52 md:pt-20 pt-25 pb-52 mx-auto h-2/3">
+        <div className="text-center lg:w-8/12 w-12/12 ld:pt-52 md:pt-20 pt-25 pb-52 mx-auto h-2/3">
           <div className="relative w-full bg-light h-2/3 md:block hidden">
             <img
               src={billThree}

@@ -5,11 +5,11 @@ function Companies() {
   return (
     <div className="pt-32 bg-light">
       <CompanyBoard />
-      <Banner
+      {/* <Banner
         title="Want to post your own jobs?"
         button="Post a job"
         link="/sign-up/new-recruiter"
-      />
+      /> */}
     </div>
   );
 }

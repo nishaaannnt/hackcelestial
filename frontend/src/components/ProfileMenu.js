@@ -11,10 +11,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { userType } from "libs/isAuth";
-import axios from "axios";
 import { getId } from "libs/isAuth";
-import apiList from "libs/apiList";
 import logoadmin from "assets/logo_admin.jpg";
+import User from "services/User";
 
 export default function ProfileMenu() {
   const type = userType();
@@ -27,15 +26,16 @@ export default function ProfileMenu() {
   }
 
   useEffect(() => {
-    axios
-      .get(`${apiList.user}/${getUser}`)
-      .then((response) => {
+    const getuser = async () => {
+      try {
+        let response = await User.getUser({ id: getUser });
         console.log("type", response);
         setUser(response.data);
-      })
-      .catch((err) => {
-        console.log("err: ", err.message);
-      });
+      } catch (e) {
+        console.log(e.message);
+      }
+      getuser();
+    }
   }, [getUser, setUser]);
 
   return (

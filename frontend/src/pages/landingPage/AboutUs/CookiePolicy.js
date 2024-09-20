@@ -30,7 +30,7 @@ export default function CookiePolicy() {
           </li>
           <li>
             Website refers to Greet, accessible from{" "}
-            <span className="font-semibold">jobportal-blush.vercel.app</span>
+            <span className="font-semibold">LINK-blush.vercel.app</span>
           </li>
           <li>“You” means the individual accessing or using the Website.</li>
         </ul>
@@ -151,7 +151,7 @@ export default function CookiePolicy() {
         <p>
           If you have any questions, please contact{" "}
           <span className="font-bold">Ricky(Kha)</span> by email at{" "}
-          <span className="font-bold">nhatkha06299@gmail.com</span>
+          <span className="font-bold">nishant21comp@student.mes.ac.in</span>
         </p>
       </div>
     </div>

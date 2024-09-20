@@ -257,12 +257,13 @@ export default function JobAd({ job, tags, about, edit }) {
               </div>
               <div className="flex justify-start md:mt-10 mt-10 mb-3 gap-2">
                 {" "}
+                <span className="font-semibold">Rating </span>
                 <Rating
                   value={about.rating !== -1 ? about.rating : null}
                   className="text-yellow-300"
                   readonly
                 />
-                <span className="font-semibold">-</span>
+                
                 <h6 className="md:text-xl text-lg font-bold text-gray-500">
                   {about.rating}
                 </h6>
@@ -284,7 +285,7 @@ export default function JobAd({ job, tags, about, edit }) {
                 </div>
               </div>
 
-              <div className="w-full flex flex-wrap md:flex-row gap-2 items-center justify-between my-10">
+              <div className="w-full flex flex-wrap md:flex-row gap-2 items-center justify-between my-5">
                 <div className="bg-[#bdf4c8] w-40 h-16 rounded-lg flex flex-col items-center justify-center">
                   <span className="text-sm">Salary</span>
                   <p className="text-lg font-semibold text-gray-700">
@@ -306,26 +307,33 @@ export default function JobAd({ job, tags, about, edit }) {
                   </p>
                 </div>
 
-                <div className="bg-[#cecdff] w-40 h-16 px-6 rounded-lg flex flex-col items-center justify-center">
-                  <span className="text-sm">No. of Vacancies</span>
-                  <p className="text-lg font-semibold text-gray-700">
-                    {about.maxPositions}
-                  </p>
+
+                <div className="w-full">
+                  <div className="flex justify-around -space-x-10">
+                    <div className="bg-[#cecdff] w-40 h-16 px-6 rounded-lg flex flex-col items-center justify-center">
+                      <span className="text-sm">No. of Vacancies</span>
+                      <p className="text-lg font-semibold text-gray-700">
+                        {about.maxPositions}
+                      </p>
+                    </div>
+                    <div
+                      className={`bg-${about.maxPositions - about.acceptedCandidates > 0
+                        ? "yellow-100"
+                        : "gray-400"
+                        } w-42 h-16 px-6 rounded-lg flex flex-col items-center justify-center`}
+                    >
+                      <span className="text-sm">Remaining Positions</span>
+                      <p className="text-lg font-semibold text-gray-700">
+                        {about.maxPositions - about.acceptedCandidates}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+
+
+                
               </div>
               <div className="flex justify-center items-center">
-                <div
-                  className={`bg-${
-                    about.maxPositions - about.acceptedCandidates > 0
-                      ? "yellow-100"
-                      : "gray-400"
-                  } w-42 h-16 px-6 rounded-lg flex flex-col items-center justify-center`}
-                >
-                  <span className="text-sm">Remaining Positions</span>
-                  <p className="text-lg font-semibold text-gray-700">
-                    {about.maxPositions - about.acceptedCandidates}
-                  </p>
-                </div>
               </div>
 
               <div className="w-full gap-4 py-5">

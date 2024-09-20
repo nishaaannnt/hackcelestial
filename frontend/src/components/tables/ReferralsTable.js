@@ -3,10 +3,12 @@ import axios from "axios";
 import apiList from "../../libs/apiList";
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Rating, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import { Button, Modal, ModalBody } from "flowbite-react";
 import { getId } from "libs/isAuth";
 import { Dialog, Transition } from "@headlessui/react";
+import Ratings from "services/Rating";
+import { Rating } from "@material-tailwind/react";
 
 const th = [
   "Title",
@@ -55,14 +57,7 @@ export default function ReferralsTable(props) {
   const fetchRating = async (referral) => {
     if (referral && referral.job._id) {
       try {
-        const response = await axios.get(
-          `${apiList.rating}?id=${referral.job._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const response = await Ratings.getRating(referral);
 
         const fetchedRating = response.data.rating;
 
@@ -75,7 +70,7 @@ export default function ReferralsTable(props) {
             setRating(fetchedRating);
           }
         } else {
-          console.log("Rating không hợp lệ");
+          console.log("Rating");
         }
       } catch (err) {
         console.log(err);
@@ -95,16 +90,8 @@ export default function ReferralsTable(props) {
         console.log("No referrals found");
         return;
       }
-
-      await axios.put(
-        apiList.rating,
-        { rating: rating, jobId: jobId },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      let body = { rating: rating, jobId: jobId }
+      await Ratings.putRating(body);
 
       setPopup({
         open: true,
@@ -189,7 +176,7 @@ export default function ReferralsTable(props) {
                                 </div>
                               </div>
                               {obj.status === "accepted" ||
-                              obj.status === "finished" ? (
+                                obj.status === "finished" ? (
                                 <div>
                                   <button
                                     variant="contained"
@@ -215,7 +202,7 @@ export default function ReferralsTable(props) {
                                 Applied On: {appliedOn.toLocaleDateString()}
                               </div>
                               {obj.status === "accepted" ||
-                              obj.status === "finished" ? (
+                                obj.status === "finished" ? (
                                 <div>
                                   Joined On: {joinedOn.toLocaleDateString()}
                                 </div>

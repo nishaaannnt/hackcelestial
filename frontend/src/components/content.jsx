@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import billOne from "assets/images/billOne.png";
 import billTwo from "assets/images/billTwo.png";
 import billThree from "assets/images/billThree.png";
+import resume from "assets/images/resume.png";
 import billFour from "assets/images/billFour.png";
 import phones from "assets/images/phones.png";
 import phone from "assets/images/phone.png";
@@ -94,60 +95,71 @@ export default function Jumbotron() {
           </div>
         </main>
       ) : (
-        <main className="bg-[#f8e5d4]">
-          <div className="text-center lg:w-7/12 w-12/12 ld:pt-52 md:pt-40 pt-32 pb-52 mx-auto h-2/3">
-            <div className="relative w-full bg-light h-2/3 md:block hidden ">
-              <img
-                src={billThree}
-                className="w-32 absolute -top-12 -right-20 md:block hidden"
-                alt=""
-              />
-              <img
-                src={billOne}
-                className="w-32 absolute md:-top-20 md:-left-20 left-4 top-96"
-                alt=""
-              />
-              <img
-                src={billTwo}
-                className="w-32 absolute bottom-0 top-52 -left-20 md:block hidden"
-                alt=""
-              />
-              <img
-                src={billFour}
-                className="w-32 absolute md:bottom-0 md:top-40 md:-right-20 top-96 right-6"
-                alt=""
-              />
-            </div>
-            <h1 className="text-black text-6xl md:w-11/12 w-12/12 mx-auto sm:mt-5 font-bold md:mt-5 px-5">
-              The best tools for your job application journey
-            </h1>
-            <p className="mt-3 text-2xl text-black sm:mt-5 md:mt-5 w-10/12 mx-auto">
-              Assert yourself through a "quality" profile with valuable tools
-              and knowledge from the Job Portal.
-            </p>
-            <div className="mt-8 sm:mt-12 mx-auto flex gap-3 justify-center">
-              <button
-                onClick={() => openModal()}
-                className="transform ease-in duration-100 hover:-translate-y-1 hover:shadow-lg md:mx-0  text-white shadow font-semibold rounded-full items-center justify-center py-3 border border-transparent text-base  bg-[#F2994A] md:py-4 md:text-lg px-8"
-              >
-                Search for a favorite job
-              </button>
-
-              <Link
-                to="/sign-up"
-                className="transform ease-in duration-100 md:mx-0 text-black  font-semibold rounded-full items-center justify-center py-3 border-2  hover:bg-black hover:text-primary  text-base  bg-primary md:py-4 md:text-lg px-8"
-              >
-                Sign up for free
-              </Link>
-            </div>
-
-            <div className="relative w-full md:hidden block mt-12">
-              <img src={billOne} className="w-32 absolute left-4" />
-
-              <img src={billFour} className="w-32 absolute right-6" />
-            </div>
+        <main className="bg-[#F5F4FA]">
+        <div className="text-center lg:w-7/12 w-12/12 ld:pt-52 md:pt-20 pt-25 pb-52 mx-auto h-2/3">
+          <div className="relative w-full bg-light h-2/3 md:block hidden">
+            <img
+              src={billThree}
+              className="w-32 absolute -top-12 -right-20 md:block hidden"
+              alt=""
+            />
+            <img
+              src={billOne}
+              className="w-32 absolute md:-top-20 md:-left-20 left-4 top-96"
+              style={{ transform: 'rotate(140deg)' }}
+              alt=""
+            />
           </div>
-        </main>
+
+          <h1 className="text-black text-6xl md:w-11/12 w-12/12 mx-auto sm:mt-5 font-bold md:mt-4 px-5">
+            Connecting <b>Talent </b>and<b> Opportunity</b> 
+          </h1>
+          <p className="mt-3 text-xl text-black sm:mt-5 md:mt-5 w-10/12 mx-auto">
+            Your gateway to placements and internships.
+          </p>
+
+          {/* Search Bar */}
+          <div className="mt-5 w-10/12 mx-auto flex justify-center rounded-full shadow-md">
+            <input
+              type="text"
+              placeholder="Search for jobs or internships..."
+              className="border rounded-l-full py-3 px-4 w-full md:w-full"
+            />
+            <button className="bg-[#F8BD8D] text-white rounded-r-full py-3 px-6">
+              Search
+            </button>
+          </div>
+
+          {/* Resume */}
+          <div className="mt-12 w-full mx-auto flex flex-col md:flex-row items-center bg-gradient-to-r from-amber-400 to-gold-500 p-6 rounded-lg shadow-md">
+            <div className="flex-1 text-left">
+              <h2 className="text-white font-bold text-xl">Need help with your resume?</h2>
+              <p className="text-white mt-2">
+                Get an AI expert to build your resume from scratch.
+              </p>
+              <button className="mt-4 bg-white text-black-600 font-semibold py-2 px-4 rounded-full hover:bg-gray-200 transition">
+                View details
+              </button>
+            </div>
+            <div className="flex justify-center md:justify-end mt-4 md:mt-0">
+              <img
+                src={resume}
+                className="w-32"
+                alt="Resume help"
+              />
+            </div>
+           
+          </div>
+
+          <div className="relative w-full md:hidden block mt-12">
+            <img src={billOne} className="w-32 absolute left-4" />
+            <img src={billFour} className="w-32 absolute right-6" /> 
+          </div>
+        </div>
+      
+      </main>
+
+
       )}
 
       {type === "applicant" ? (

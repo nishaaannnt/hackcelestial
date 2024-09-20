@@ -12,12 +12,6 @@ let schema = new mongoose.Schema(
     },
     contactNumber: {
       type: String,
-      validate: {
-        validator: function (v) {
-          return v !== "" ? /\+\d{1,3}\d{10}/.test(v) : true;
-        },
-        msg: "Phone number is invalid!",
-      },
     },
 
     bio: {

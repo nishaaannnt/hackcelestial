@@ -96,7 +96,7 @@ export default function ForRecruiter() {
               Applicant apply
             </h1>
             <p className="text-xl font-light">
-              Our JOBPORTAL community allows users to discover and apply for
+              Our LINK community allows users to discover and apply for
               jobs.
             </p>
           </div>
@@ -153,8 +153,8 @@ export default function ForRecruiter() {
         answerOne="The hiring reward is what the Greeters will see on the job board and get paid if their referral results in a hiring. The interview reward is what is paid if a referral ends up with an interview. You decide what the hiring- and interview reward should be. The Greet Fee is equal to 20% of your hiring reward."
         questionTwo="When and how much do I pay?"
         answerTwo="Greet was recently launched and we are offering early adopters to start using the service for free (for a limited time), i.e no monthly pricing plan. Instead, you only pay for the interview reward and hiring reward when you interview or hire someone. So until then, you get free promotion."
-        questionThree="How do I get my company on JobPortal?"
-        answerThree="Contact nhatkha06299@gmail.com"
+        questionThree="How do I get my company on LINK?"
+        answerThree="Contact nishant21comp@student.mes.ac.in"
       />
       {type === "recruiter" ? (
         <Banner

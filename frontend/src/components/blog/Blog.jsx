@@ -16,7 +16,7 @@ export default function Blog() {
       <Popover className="relative">
         <>
           <Popover.Button
-            className="relative text-[#F2994A] group md:py-2 py-1 rounded-md lg:inline-flex items-center text-lg font-semibold hover:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            className="relative text-[#F8BD8D] group md:py-2 py-1 rounded-md lg:inline-flex items-center text-lg font-semibold hover:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
           >

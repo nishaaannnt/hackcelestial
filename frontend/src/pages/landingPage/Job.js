@@ -281,11 +281,11 @@ export default function Job(props) {
         </div>
       </div>
 
-      <Banner
+      {/* <Banner
         title="Looking for something else?"
         button="Explore the job board"
         link="/jobs"
-      />
+      /> */}
     </>
   );
 }

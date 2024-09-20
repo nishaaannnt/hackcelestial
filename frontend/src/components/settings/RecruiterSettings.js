@@ -70,8 +70,8 @@ export default function CompanySettings({ profile, user }) {
       let formData = new FormData();
       for (let i of files) {
         formData.append("file", i);
-        formData.append("upload_preset", "jobportal");
-        formData.append("folder", "jobportal");
+        formData.append("upload_preset", "LINK");
+        formData.append("folder", "LINK");
         let response = await toast.promise(apiUploadImages(formData), {
           pending: "Uploading images...",
           success: "Images uploaded successfully 👌",

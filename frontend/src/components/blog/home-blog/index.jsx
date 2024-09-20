@@ -10,8 +10,8 @@ export default function BlogHome() {
         <div className="w-11/12 mx-auto">
           <div className="lg:text-left text-center lg:w-full w-full lg:pt-24 pt-12 lg:pb-40 pb-16">
             <div className="">
-              <h1 className="text-[#F2994A] lg:text-6xl text-4xl sm:mt-5 font-bold sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0">
-                JobPortal
+              <h1 className="text-[#F8BD8D] lg:text-6xl text-4xl sm:mt-5 font-bold sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0">
+                LINK
               </h1>
               <span className="lg:text-6xl text-4xl sm:mt-5 font-bold sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0 text-slate-500">
                 - The idea of developing your IT career

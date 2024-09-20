@@ -203,7 +203,7 @@ export default function JobBoard({ title, props }) {
           {title === false ? (
             <div className="block pt-4">
               <h1 className="md:text-6xl text-4xl font-bold text-gray-900 text-center md:pb-16 pb-12 pt-10">
-                Trending jobs ({limitedJobs.length})
+                Trending Jobs ({limitedJobs.length})
               </h1>
             </div>
           ) : (
@@ -253,7 +253,7 @@ export default function JobBoard({ title, props }) {
               <div className="flex justify-between items-center gap-4">
                 <div className="pl-4">
                   <span className="font-semibold text-slate-600 text-2xl">
-                    {jobs.length} IT Jobs in Here
+                    {jobs.length} Jobs in Here
                   </span>
                 </div>
 
@@ -328,10 +328,10 @@ export default function JobBoard({ title, props }) {
             </div>
           ) : null}
 
-          <div className="mt-20 col-span-3 transform ease-in duration-100 w-full bg-primary rounded-2xl p-6 text-left relative">
+          <div className="mt-20 col-span-3 transform ease-in duration-100 w-full bg-gradient-to-r from-amber-400 to-gold-500 rounded-2xl p-6 text-left relative shadow-md">
             <div className="grid grid-cols-2 md:p-10 p-4 gap-6">
               <h1 className="text-black lg:text-6xl text-4xl font-bold  sm:mx-auto lg:mx-0 mb-4 md:col-span-1 col-span-2">
-                Let’s find your IT Talents
+              Uncover the Talent You Need
               </h1>
 
               <div className="md:col-span-1 col-span-2">
@@ -340,9 +340,9 @@ export default function JobBoard({ title, props }) {
                 </p>
                 <Link
                   to={`/jobs/talent-pool/refer`}
-                  className="hover:opacity-80  cursor-pointer font-semibold text-md justify-center px-8 py-4 bg-black rounded-xl text-white"
+                  className="hover:opacity-80  cursor-pointer font-bold text-md justify-center px-8 py-4 bg-white rounded-xl text-clack"
                 >
-                  Contact for me
+                  Contact Us
                 </Link>
               </div>
             </div>

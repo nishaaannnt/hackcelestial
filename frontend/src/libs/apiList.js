@@ -1,5 +1,5 @@
 export const server =
-  // "https://jobportal-6qtv.onrender.com/api";
+  // "https://LINK-6qtv.onrender.com/api";
   "http://localhost:8000/api";
 
 const apiList = {

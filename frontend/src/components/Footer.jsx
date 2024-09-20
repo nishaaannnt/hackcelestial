@@ -16,7 +16,7 @@ export default function Footer() {
             <Link className="flex pt-1" to="/">
               <img className="h-12 pb-2 " src={logo} alt="logo" />
               <h1 className="md:pl-2 pl-2 text-4xl text-black font-medium hover:opacity-60">
-                JobPortal
+                LINK
               </h1>
             </Link>
             <p className="md:w-80 w-full text-lg font-medium -mt-2 ">
@@ -25,12 +25,14 @@ export default function Footer() {
 
             <a
               className="w-[220px] text-lg font-medium border-b-2 border-black hover:opacity-60"
-              href="mailto:nhatkha06299@gmail.com"
+              href="mailto:nishant21comp@student.mes.ac.in"
             >
-              nhatkha06299@gmail.com
+              nishant21comp@student.mes.ac.in
             </a>
             <span className="font-light">
-              Copyright © 2023 <span className="font-normal"> Nhat kha</span>{" "}
+              Copyright © 2024 <span className="font-normal"> Nishant Dixit
+                
+                </span>{" "}
               Design.
             </span>
           </div>
@@ -105,7 +107,7 @@ export default function Footer() {
           </div>
 
           <div className="w-full sm:w-1/5 md:w-2/5 flex flex-col space-y-2 pb-6">
-            <h1 className="text-2xl font-semibold">JobPortal</h1>
+            <h1 className="text-2xl font-semibold">LINK</h1>
 
             <Link
               className="w-28 opacity-60 hover:opacity-100 font-semibold text-lg"
@@ -156,7 +158,7 @@ export default function Footer() {
             <Link className="flex pt-1" to="/">
               <img className="h-12 pb-2 " src={logo} alt="logo" />
               <h1 className="md:pl-2 pl-2 text-4xl text-black font-medium hover:opacity-60">
-                JobPortal
+                LINK
               </h1>
               <FontAwesomeIcon icon={faBlog} />
             </Link>
@@ -177,7 +179,7 @@ export default function Footer() {
             <span className="break-all w-3/4">
               By providing your email address, you agree to the{" "}
               <strong>Terms of Service</strong> and{" "}
-              <strong>Privacy Policy</strong> of JobPortal regarding your
+              <strong>Privacy Policy</strong> of LINK regarding your
               privacy information.
             </span>
             <div className="flex gap-4">
@@ -279,7 +281,7 @@ export default function Footer() {
           </div>
 
           <div className="w-full sm:w-1/5 md:w-2/5 flex flex-col space-y-2 pb-6">
-            <h1 className="text-2xl font-semibold">JobPortal</h1>
+            <h1 className="text-2xl font-semibold">LINK</h1>
 
             <Link
               className="w-28 opacity-60 hover:opacity-100 font-semibold text-lg"

@@ -189,9 +189,9 @@ const Myjob = ({ job }, index) => {
             icon={faHourglassHalf}
             className="text-xl text-orange-400 mr-3.5 ml-1"
           />
-          <span className="text-base font-semibold tracking-wide">
+          <span className="text-base font-semibold tracking-wide text-gray-600">
             Duration:{" "}
-            <span className="font-medium text-xl">
+            <span className="font-medium text-black">
               {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
             </span>
           </span>
@@ -201,9 +201,9 @@ const Myjob = ({ job }, index) => {
             icon={faMapMarkerAlt}
             className="text-xl text-orange-400 mr-3.5 ml-1"
           />
-          <span className="text-base font-semibold tracking-wide">
+          <span className="text-base font-semibold tracking-wide text-gray-600">
             Location:{" "}
-            <span className="font-medium text-xl">{job.location}</span>
+            <span className="font-medium text-black">{job.location}</span>
           </span>
         </p>
 
@@ -212,9 +212,9 @@ const Myjob = ({ job }, index) => {
             icon={faCalendarDays}
             className="text-xl text-red-500 mr-3 ml-1"
           />
-          <span className="text-base font-semibold tracking-wide">
+          <span className="text-base font-semibold tracking-wide text-gray-600">
             Date Of Posting:{" "}
-            <span className="font-medium text-xl">
+            <span className="font-medium text-black">
               {calculateDays(new Date(job.dateOfPosting))}
             </span>
           </span>
@@ -224,19 +224,19 @@ const Myjob = ({ job }, index) => {
             icon={faUsers}
             className="text-xl text-red-500 mr-2"
           />
-          <span className="text-base font-semibold tracking-wide">
+          <span className="text-base font-semibold tracking-wide text-gray-600">
             Number of Applicants:
-            <span className="font-medium text-xl"> {job.maxApplicants}</span>
+            <span className="font-medium text-black"> {job.maxApplicants}</span>
           </span>
         </p>
         <p className="pl-1">
           <FontAwesomeIcon
             icon={faHand}
-            className="text-xl text-red-500 mr-2"
+            className="text-2xl text-yellow-500 mr-2"
           />
-          <span className="text-base font-semibold tracking-wide">
-            Remaining Number of Positions:{" "}
-            <span className="font-medium text-xl">
+          <span className="text-base font-semibold tracking-wide text-gray-600">
+            Number of Positions Left:{" "}
+            <span className="font-medium text-black">
               {job.maxPositions - job.acceptedCandidates}
             </span>
           </span>
@@ -248,7 +248,7 @@ const Myjob = ({ job }, index) => {
                 icon={faAward}
                 className="text-xl text-red-500 mr-3 ml-2"
               />
-              <span className="text-base font-semibold tracking-wide">
+              <span className="text-base font-semibold tracking-wide text-gray-600">
                 Skill:{" "}
               </span>
               <div className="pl-1 flex mt-3 gap-2">

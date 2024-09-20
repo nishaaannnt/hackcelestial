@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
           Last updated: 18 December, 2023
         </p>
         <p>
-          JobPortal is responsible for the personal information about you that
+          LINK is responsible for the personal information about you that
           is processed on our website ( ). The following policy applies when you
           use our website. We are constantly working on improving our services
           therefore this policy can be changed in the future. The purpose of
@@ -120,7 +120,7 @@ export default function PrivacyPolicy() {
         <p>
           If you have any questions, please contact{" "}
           <span className="font-bold">Ricky(Kha)</span> by email at{" "}
-          <span className="font-bold">nhatkha06299@gmail.com</span>
+          <span className="font-bold">nishant21comp@student.mes.ac.in</span>
         </p>
       </div>
     </div>

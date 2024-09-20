@@ -40,7 +40,6 @@ export const SetPopupContext = createContext();
 
 export default function App() {
   const type = userType();
-  console.log("type: " + type);
   const [popup, setPopup] = useState({
     open: false,
     icon: "",

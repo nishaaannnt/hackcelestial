@@ -13,6 +13,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import news from "data/authors-table-data";
+import User from "services/User";
 
 export default function TalentPool() {
   const [users, setUsers] = useState([]);
@@ -20,21 +21,25 @@ export default function TalentPool() {
   const [applicant, setApplicant] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [filterUser, setFilterUser] = useState(null);
-
+  async function getusers() {
+    let response = await User.getAllusers();
+    console.log(response)
+    setUsers(response.data.allUser);
+  }
   useEffect(() => {
-    axios.get(apiList.users).then((response) => {
-      setUsers(response.data.allUser);
-    });
+    getusers();
   }, []);
 
-  useEffect(() => {
-    axios.get(apiList.allApplicants).then((response) => {
-      console.log(response.data.allUser);
-      const filteredApplicants = response.data.allUser.filter((user) => {
-        return user.skills.length >= 2 && user.education.length >= 1;
-      });
-      setApplicant(filteredApplicants);
+  async function getAllAplicants() {
+    let response = await User.getAllAplicants();
+    console.log(response.data.allUser);
+    const filteredApplicants = response.data.allUser.filter((user) => {
+      return user.skills.length >= 2 && user.education.length >= 1;
     });
+    setApplicant(filteredApplicants);
+  }
+  useEffect(() => {
+    getAllAplicants();
   }, []);
 
   const openModal = (user) => {
@@ -190,11 +195,9 @@ export default function TalentPool() {
                                   <span className="font-semibold">
                                     {selectedUser.education
                                       .map((edu) => {
-                                        return `${edu.institutionName} (${
-                                          edu.startYear
-                                        }-${
-                                          edu.endYear ? edu.endYear : "Ongoing"
-                                        })`;
+                                        return `${edu.institutionName} (${edu.startYear
+                                          }-${edu.endYear ? edu.endYear : "Ongoing"
+                                          })`;
                                       })
                                       .join(", ")}
                                   </span>

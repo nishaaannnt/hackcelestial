@@ -1,14 +1,11 @@
 import ProgressBar from "components/ProgressBar";
 import ReferNavigation from "components/refer/ReferNavigation";
-import Candidate from "components/refer/steps/Candidate";
-import Motivation from "components/refer/steps/Motivation";
 import Referrer from "components/refer/steps/Referrer";
 import General from "components/refer/steps/General";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { userType } from "libs/isAuth";
-import apiList from "libs/apiList";
 
 export default function Refer() {
   const history = useNavigate();

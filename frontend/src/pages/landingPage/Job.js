@@ -1,5 +1,5 @@
 import axios from "axios";
-import JobAd from "components/JobAd";
+import JobAd from "../../components/JobAd";
 import apiList from "../../libs/apiList";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -161,14 +161,13 @@ export default function Job(props) {
             {userType() === "applicant" && job ? (
               <>
                 {job.maxPositions !== undefined &&
-                job.acceptedCandidates !== undefined ? (
+                  job.acceptedCandidates !== undefined ? (
                   <>
                     {job.maxPositions - job.acceptedCandidates > 0 ? (
                       <Link
                         className={`hover:opacity-80 ease-out duration-300 flex cursor-pointer items-center font-semibold 
-                        text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${
-                          hasAcceptedJob ? "opacity-50 cursor-not-allowed" : ""
-                        }`}
+                        text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${hasAcceptedJob ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
                         onClick={() => handleApply()}
                         title={
                           hasAcceptedJob
@@ -267,11 +266,9 @@ export default function Job(props) {
                 <button
                   key={i}
                   onClick={() => paginate(i + 1)}
-                  className={`mx-1 px-3 py-1 bg-${
-                    selectedPage === i + 1 ? "yellow" : "white"
-                  } text-black border hover:border-yellow-300 rounded ${
-                    selectedPage === i + 1 ? "bg-yellow-200" : ""
-                  }`}
+                  className={`mx-1 px-3 py-1 bg-${selectedPage === i + 1 ? "yellow" : "white"
+                    } text-black border hover:border-yellow-300 rounded ${selectedPage === i + 1 ? "bg-yellow-200" : ""
+                    }`}
                 >
                   {i + 1}
                 </button>

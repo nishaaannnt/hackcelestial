@@ -10,6 +10,7 @@ import { MuiChipsInput } from "mui-chips-input";
 import { apiUploadImages } from "libs/uploadImage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Auth from "services/Auth";
 
 export default function SignUp() {
   const history = useNavigate();
@@ -144,7 +145,7 @@ export default function SignUp() {
     console.log(`Input ${key} value:`, value);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // if (signupDetails.name === "") {
     //   setInputErrorHandler((prev) => ({
     //     ...prev,
@@ -208,30 +209,29 @@ export default function SignUp() {
 
       if (!verified) {
         console.log("here")
-        axios
-          .post(apiList.signup, updatedDetails)
-          .then((response) => {
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("type", response.data.type);
-            localStorage.setItem("id", response.data._id);
-            setLoggedin(isAuth());
-            setPopup({
-              open: true,
-              icon: "success",
-              message: "Logged in successfully",
-            });
-            history("/referrals");
-            console.log("export" + response);
-            console.log(response?.data.type);
-          })
-          .catch((err) => {
-            setPopup({
-              open: true,
-              icon: "warn",
-              message: err.response.data.message,
-            });
-            console.log(err.response.data.message);
+        try {
+          let response = await Auth.signup(updatedDetails);
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("type", response.data.type);
+          localStorage.setItem("id", response.data._id);
+          setLoggedin(isAuth());
+          setPopup({
+            open: true,
+            icon: "success",
+            message: "Logged in successfully",
           });
+          history("/referrals");
+          console.log("export" + response);
+          console.log(response?.data.type);
+        }
+        catch (err) {
+          setPopup({
+            open: true,
+            icon: "warn",
+            message: err.response.data.message,
+          });
+          console.log(err.response.data.message);
+        };
       } else {
         setInputErrorHandler(tmpErrorHandler);
         setPopup({
@@ -650,20 +650,20 @@ export default function SignUp() {
 
         <button
           className={`mt-2 w-full font-semibold px-4 py-3 rounded-lg text-sm ${(signupDetails.type === "applicant" && allFieldsCheckedApplicant) ||
-              (signupDetails.type === "recruiter" && allFieldsCheckedRecruiter)
-              ? "bg-primary text-gray-500 hover:bg-[#F2994A] hover:text-black border-yellow-100 cursor-pointer"
-              : "bg-yellow-100 text-yellow-800 cursor-not-allowed border-yellow-100"
+            (signupDetails.type === "recruiter" && allFieldsCheckedRecruiter)
+            ? "bg-primary text-gray-500 hover:bg-[#F2994A] hover:text-black border-yellow-100 cursor-pointer"
+            : "bg-yellow-100 text-yellow-800 cursor-not-allowed border-yellow-100"
             }`}
           onClick={() => {
             signupDetails.type === "applicant"
               ? handleLogin()
               : handleLoginRecruiter();
           }}
-          // disabled={
-          //   (signupDetails.type === "applicant" &&
-          //     !allFieldsCheckedApplicant) ||
-          //   (signupDetails.type === "recruiter" && !allFieldsCheckedRecruiter)
-          // }
+        // disabled={
+        //   (signupDetails.type === "applicant" &&
+        //     !allFieldsCheckedApplicant) ||
+        //   (signupDetails.type === "recruiter" && !allFieldsCheckedRecruiter)
+        // }
         >
           Create your account
         </button>

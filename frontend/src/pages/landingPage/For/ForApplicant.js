@@ -16,7 +16,7 @@ export default function ForApplicant() {
     <>
       <div className="bg-white md:pt-32 pt-16">
         <h1 className="max-w-2xl mx-auto text-center md:text-6xl text-4xl font-bold text-gray-900">
-          Greet for Applicant
+          Process for Applicant
         </h1>
         <div
           className="grid lg:grid-cols-3 grid-cols-1 gap-14 md:py-32 py-12

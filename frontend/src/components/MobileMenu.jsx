@@ -10,7 +10,7 @@ export default function MobileMenu() {
   const buttonRef = useRef();
   const type = userType();
 
-  console.log("type:", type);
+  // console.log("type:", type);
   return (
     <div className="px-4">
       <Popover className="relative">

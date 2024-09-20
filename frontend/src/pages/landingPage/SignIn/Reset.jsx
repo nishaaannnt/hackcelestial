@@ -5,6 +5,7 @@ import apiList from "../../../libs/apiList";
 import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Auth from "services/Auth";
 
 export const Reset = () => {
   const { token } = useParams();
@@ -28,7 +29,7 @@ export const Reset = () => {
     if (verified) {
       const data = { ...payload, token };
       try {
-        const response = await axios.put(apiList.reset, data);
+        const response = await Auth.resetPassword(data);
         setPopup({
           open: true,
           icon: "success",

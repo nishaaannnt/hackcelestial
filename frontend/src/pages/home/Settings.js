@@ -7,6 +7,7 @@ import apiList from "../../libs/apiList";
 import { getId } from "libs/isAuth";
 import { useParams } from "react-router-dom";
 import { MuiChipsInput } from "mui-chips-input";
+import User from "services/User";
 
 export default function Settings() {
   const setPopup = useContext(SetPopupContext);
@@ -40,41 +41,35 @@ export default function Settings() {
     getData();
   }, []);
 
-  const getData = () => {
-    axios
-      .get(`${apiList.user}/${getUser}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setProfileDetails({
-          ...response.data,
-          skills: response.data.skills || [],
-          education: response.data.education.map((edu) => ({
-            institutionName: edu.institutionName ? edu.institutionName : "",
-            startYear: edu.startYear ? edu.startYear : "",
-            endYear: edu.endYear ? edu.endYear : "",
-          })),
-        });
-        setChips(response.data.skills || []);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setPopup({
-          open: true,
-          icon: "error",
-          message: "Error",
-        });
+  const getData = async () => {
+    try {
+      let response = await User.getUser({ id: getUser });
+      console.log(response.data);
+      setProfileDetails({
+        ...response.data,
+        skills: response.data.skills || [],
+        education: response.data.education.map((edu) => ({
+          institutionName: edu.institutionName ? edu.institutionName : "",
+          startYear: edu.startYear ? edu.startYear : "",
+          endYear: edu.endYear ? edu.endYear : "",
+        })),
       });
+      setChips(response.data.skills || []);
+    } catch (err) {
+      console.log(err.response.data);
+      setPopup({
+        open: true,
+        icon: "error",
+        message: "Error",
+      });
+    }
   };
 
   console.log("update education: ", profileDetails.education);
 
   const handleUpdate = async () => {
     try {
-      console.log("fetch: ", `${apiList.updateUser}/${getUser}`);
+      // console.log("fetch: ", `${apiList.updateUser}/${getUser}`);
 
       const updatedEducation = profileDetails.education
         .filter((edu) => edu.institutionName.trim() !== "")
@@ -89,17 +84,7 @@ export default function Settings() {
       };
 
       console.log("updatedDetails:", updatedDetails);
-
-      const response = await axios.put(
-        `${apiList.updateUser}/${getUser}`,
-        updatedDetails,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-
+      const response = await User.updateUser({ user: getUser, data: updatedDetails })
       console.log("Server response:", response.data);
 
       setPopup({

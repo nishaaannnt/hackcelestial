@@ -52,12 +52,12 @@ export default function JobTable({ jobs }) {
           let countResponse;
 
           try {
-            countResponse = await axios.get(countAddress, {
+            let countResponse = await axios.get(countAddress, {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
               },
             });
-
+            console.log(countResponse)
             counts[job._id] = countResponse.data.length;
           } catch (error) {
             console.error(`Error fetching count for job ${job._id}`, error);

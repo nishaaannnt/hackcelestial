@@ -13,7 +13,7 @@ import Blog from "./blog/Blog";
 export default function Navbar() {
   const linkUrl = useLocation();
 
-  console.log(linkUrl);
+  // console.log(linkUrl);
 
   return (
     <Disclosure as="nav" className="bg-[#FFF5EC] w-full">

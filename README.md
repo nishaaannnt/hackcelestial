@@ -13,7 +13,7 @@
   - Routes/
   - middleware/
   - Controller/
-  - model/
+  - models/
   - utils/
   - server.js
 - Frontend/

@@ -16,25 +16,6 @@ const upload = multer({
   limits: { fileSize: 1024 * 1024 * 5 },
 });
 
-// router.post("/resume", uploadResume.single("file"), async (req, res) => {
-//   const { file } = req;
-//   if (!file) {
-//     res.status(400).json({ message: "No file uploaded" });
-//     return;
-//   }
-//   if (file.detectedFileExtension != ".pdf") {
-//     res.status(400).json({ message: "invalid format" });
-//   } else {
-//     const filename = `${uuidv4()}${file.detectedFileExtension}`;
-//     try {
-//       pipeline(file.stream, fs.createWriteStream(`./files`));
-//       res.send({ status: "oke" });
-//     } catch (error) {
-//       res.status(500).json({ status: "Error", message: error.message });
-//     }
-//   }
-// });
-
 router.post("/profile", upload.single("file"), (req, res) => {
   const { file } = req;
 
@@ -49,7 +30,7 @@ router.post("/profile", upload.single("file"), (req, res) => {
 
     pipeline(
       file.stream,
-      fs.createWriteStream(`${__dirname}/../public/profile/${filename}`)
+      fs.createWriteStream(`${__dirname}/../../store/public/profile/${filename}`)
     )
       .then(() => {
         res.send({

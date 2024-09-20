@@ -1,12 +1,13 @@
-const Application = require("../model/applications");
-const Job = require("../model/job");
+const jobHandler = require("../job/job.handler");
+const Job = require("../models/job");
+const applicationHandler = require("./application.handler");
 
 // Function to gets all applications
 const getAllApplications = async (req, res) => {
   const user = req.user;
 
   try {
-    const applications = await Application.aggregate([
+    const applications = await applicationHandler.getAggregateQuery([
       {
         $lookup: {
           from: "jobapplicantinfos",
@@ -55,7 +56,7 @@ const getAllApplications = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const all = await Application.find();
+    const all = await applicationHandler.getApplicationByQuery();
 
     // const allUsers = [...allRecruiter, ...allJobApplicant];
 
@@ -79,7 +80,7 @@ const updateStatusApplication = async (req, res) => {
       // Check the status of the application
       if (status === "accepted") {
         // If the status is "accepted," process the acceptance logic
-        const application = await Application.findOne({
+        const application = await applicationHandler.getApplicationByQuery({
           _id: id,
           recruiterId: user._id,
         });
@@ -90,7 +91,7 @@ const updateStatusApplication = async (req, res) => {
         }
 
         // Find the corresponding job
-        const job = await Job.findOne({
+        const job = await jobHandler.getJobsObjByQuery({
           _id: application.jobId,
           userId: user._id,
         });
@@ -101,7 +102,7 @@ const updateStatusApplication = async (req, res) => {
         }
 
         // Count accepted applications for the job
-        const activeApplicationCount = await Application.countDocuments({
+        const activeApplicationCount = await applicationHandler.getAllDocumentsCount({
           recruiterId: user._id,
           jobId: job._id,
           status: "accepted",
@@ -115,7 +116,7 @@ const updateStatusApplication = async (req, res) => {
           await application.save();
 
           // Update other applications for the same user to "cancelled"
-          await Application.updateMany(
+          await applicationHandler.updateManyApplications(
             {
               _id: {
                 $ne: application._id,
@@ -141,7 +142,7 @@ const updateStatusApplication = async (req, res) => {
 
           // If status is "accepted," update the job with the increased accepted candidates count
           if (status === "accepted") {
-            await Job.findOneAndUpdate(
+            await jobHandler.updateJobs(
               {
                 _id: job._id,
                 userId: user._id,
@@ -166,7 +167,7 @@ const updateStatusApplication = async (req, res) => {
         }
       } else {
         // If the status is not "accepted," update the application status
-        const application = await Application.findOneAndUpdate(
+        const application = await applicationHandler.updateApplications(
           {
             _id: id,
             recruiterId: user._id,
@@ -193,7 +194,7 @@ const updateStatusApplication = async (req, res) => {
           status === "cancelled" ||
           status === "delete"
         ) {
-          await Application.deleteOne({
+          await applicationHandler.deleteApplications({
             _id: application._id,
           });
         }
@@ -210,7 +211,7 @@ const updateStatusApplication = async (req, res) => {
       // If the user is not a recruiter, handle the scenario
       if (status === "cancelled") {
         // If the status is "cancelled," update the application status
-        const application = await Application.findOneAndUpdate(
+        const application = await applicationHandler.updateApplications(
           {
             _id: id,
             userId: user._id,
@@ -222,7 +223,6 @@ const updateStatusApplication = async (req, res) => {
           }
         );
 
-        // Check if the application status was updated
         if (!application) {
           return res.status(400).json({
             message: "Application status cannot be updated",

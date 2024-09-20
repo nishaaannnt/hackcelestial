@@ -1,5 +1,5 @@
 const express = require("express");
-const applicationCtrl = require("../controller/applications");
+const applicationCtrl = require("../application/application.controller");
 
 // Middleware xác thực JWT (JSON Web Token)
 const jwtAuth = require("../middleware/jwtAuth");
@@ -14,3 +14,4 @@ router.get("/", jwtAuth, applicationCtrl.getAllApplications);
 router.put("/:id", jwtAuth, applicationCtrl.updateStatusApplication);
 
 module.exports = router;
+

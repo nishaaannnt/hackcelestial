@@ -1,16 +1,14 @@
-const mongoose = require("mongoose");
-const Rating = require("../model/rating");
-const Application = require("../model/applications");
-const JobApplicant = require("../model/jobApplicant");
-const Job = require("../model/job");
+const RatingHandler = require("./rating.handler");
+const ApplicationHandler = require("../application/application.handler");
+const JobApplicantHandler = require("../applicant/applicant.handler");
+const JobHandler = require("../job/job.handler");
 
-const addRating = async (req, res) => {
-  const user = req.user;
-  const data = req.body;
-  const isRecruiter = user.type === "recruiter";
-
+const addRating = async (req, res, next) => {
   try {
-    let rating = await Rating.findOne({
+    const user = req.user;
+    const data = req.body;
+    const isRecruiter = user.type === "recruiter";  
+    let rating = await RatingHandler.getRatingsByQuery({
       senderId: user._id,
       receiverId: isRecruiter ? data.applicantId : data.jobId,
       category: isRecruiter ? "applicant" : "job",
@@ -21,7 +19,7 @@ const addRating = async (req, res) => {
         ? { userId: data.applicantId, recruiterId: user._id }
         : { userId: user._id, jobId: data.jobId };
 
-      const acceptedApplicant = await Application.countDocuments({
+      const acceptedApplicant = await ApplicationHandler.getAllDocumentsCount({
         ...queryCriteria,
         status: { $in: ["accepted", "finished"] },
       });
@@ -35,65 +33,66 @@ const addRating = async (req, res) => {
       }
 
       // Create new rating
-      rating = new Rating({
+      const result = await RatingHandler.addRatings({
         category: isRecruiter ? "applicant" : "job",
         receiverId: isRecruiter ? data.applicantId : data.jobId,
         senderId: user._id,
         rating: data.rating,
       });
-
-      await rating.save();
     } else {
       // Update existing rating
-      rating.rating = data.rating;
-      await rating.save();
+      await RatingHandler.updateRatings({_id: rating._id},{rating: data.rating});
     }
 
     // Calculate and update average rating
     const aggregatePipeline = [
       {
         $match: {
-          receiverId: new mongoose.Types.ObjectId(rating.receiverId),
+          receiverId: RatingHandler.convertObjectId(rating.receiverId),
           category: rating.category,
         },
       },
       { $group: { _id: null, average: { $avg: "$rating" } } },
     ];
 
-    const result = await Rating.aggregate(aggregatePipeline);
+    const result = await RatingHandler.getAggregateQuery(aggregatePipeline);
     let avg = result[0]?.average || 0;
 
     // Round the average rating to the nearest integer
     avg = Math.round(avg);
 
     if (isRecruiter) {
-      await JobApplicant.updateOne(
+      await JobApplicantHandler.updateJobApplicant(
         { userId: rating.receiverId },
         { rating: avg }
       );
     } else {
-      await Job.updateOne({ _id: rating.receiverId }, { rating: avg });
+      await JobHandler.updateJobs({ _id: rating.receiverId }, { rating: avg });
     }
 
     res.json({ message: "Rating added successfully" });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+  } catch (e) {
+    next(e);
   }
 };
 
-const getPersonalRating = async (req, res) => {
-  const user = req.user;
-  Rating.findOne({
-    senderId: user._id,
-    receiverId: req.query.id,
-    category: user.type === "recruiter" ? "applicant" : "job",
-  }).then((rating) => {
-    if (rating === null) {
-      res.json({ rating: -1 });
-      return;
+const getPersonalRating = async (req, res, next) => {
+  try {
+    const user = req.user;
+    const rating = await RatingHandler.getRatingsObjByQuery({
+      senderId: user._id,
+      receiverId: req.query.id,
+      category: user.type === "recruiter" ? "applicant" : "job",
+    });
+
+    if (!rating) {
+      return res.json({ rating: -1 });
     }
+
     res.json({ rating: rating.rating });
-  });
+  } catch (e) {
+    next(e);
+  }
 };
 
 module.exports = {

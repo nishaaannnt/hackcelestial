@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const passportConfig = require("./middleware/passportConfig");
+const passportConfig = require("./server/middleware/passportConfig");
 const cors = require("cors");
 require("dotenv").config();
-
-const initRouter = require("./routes");
+const { handleError } = require("./server/helpers/errorHandler");
+const initRouter = require("./server/routes");
 
 // Connect to MongoDB
 mongoose
@@ -28,6 +28,10 @@ app.use(passportConfig.initialize());
 
 // Initialize routes
 initRouter(app);
+
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});  
 
 // Start server
 app.listen(port, () => {

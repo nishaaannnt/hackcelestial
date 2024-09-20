@@ -1,12 +1,12 @@
-const authRouter = require("./auth");
-const userRouter = require("./user");
-const jobRouter = require("./job");
-const applicationRouter = require("./applications");
-const ratingRouter = require("./rating");
-const uploadRouter = require("./uploadImage");
+const authRouter = require("../auth/auth.route.js");
+const userRouter = require("../user/user.route.js");
+const jobRouter = require("../job/job.route.js");
+const applicationRouter = require("../application/application.route.js");
+const ratingRouter = require("../rating/rating.route.js");
+const uploadRouter = require("./uploadImage.route.js");
 const ResumeRouter = require("./uploadResume");
-const downloadRouter = require("./download");
-const applicantRouter = require("./applicant");
+const downloadRouter = require("./download.route.js");
+const applicantRouter = require("../applicant/applicant.route.js");
 
 const initRouter = (app) => {
   app.use("/api/auth", authRouter);

@@ -1,7 +1,7 @@
 const express = require("express");
 const jwtAuth = require("../middleware/jwtAuth");
 
-const ratingCtrl = require("../controller/rating");
+const ratingCtrl = require("./rating.controller");
 
 const router = express.Router();
 

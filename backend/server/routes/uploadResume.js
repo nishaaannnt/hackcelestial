@@ -41,7 +41,6 @@ router.post("/resume", upload.single("resume"), async (req, res) => {
   } catch (error) {
     res.json({ status: error });
   }
-
   console.log(storage);
 });
 

@@ -5,28 +5,27 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const User = require("../model/user");
-const Recruiter = require("../model/recruiter");
-const JobApplicant = require("../model/jobApplicant");
+const User = require("../models/user");
+const Recruiter = require("../models/recruiter");
+const JobApplicant = require("../models/jobApplicant");
 const sendMail = require("../utils/sendMail");
 
-// const generateOTP = () => {
-//   const min = 1000;
-//   const max = 9999;
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// };
+const generateOTP = () => {
+  const min = 1000;
+  const max = 9999;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-// const sendVerificationEmail = async (email, otp) => {
-//   try {
-//     // Gọi hàm sendEmail để gửi email với mã OTP
-//     const result = await sendEmail(email, otp); // Pass email and otp directly
+const sendVerificationEmail = async (email, otp) => {
+  try {
+    const result = await sendEmail(email, otp); // Pass email and otp directly
 
-//     return result;
-//   } catch (error) {
-//     console.error("Error sending verification email:", error);
-//     throw new Error("Error sending verification email");
-//   }
-// };
+    return result;
+  } catch (error) {
+    console.error("Error sending verification email:", error);
+    throw new Error("Error sending verification email");
+  }
+};
 
 const SignUp = async (req, res) => {
   try {
@@ -197,35 +196,6 @@ const VerifyEmail = async (req, res) => {
 
 // Define a function for user Login
 const Login = (req, res, next) => {
-  // // return new Promise((resolve, reject) => {
-  //   // Use passport for authentication
-  //   passport.authenticate(
-  //     "local",
-  //     { session: false },
-  //     function (err, user, info) {
-  //       if (err) {
-  //         // reject(err);
-  //         return next(err);
-  //       }
-
-  //       // If authentication fails, Response with an unauthorized status
-  //       if (!user) {
-  //         res.status(401).json(info);
-  //         reject(info);
-  //         return;
-  //       }
-
-  //       // Token
-  //       const token = jwt.sign({ _id: user._id }, authKeys.jwtSecretKey);
-  //       // Response with the token and user type
-  //       res.json({
-  //         token: token,
-  //         type: user.type,
-  //       });
-  //       resolve();
-  //     }
-  //   )(req, res, next);
-  // // });
   passport.authenticate(
     "local",
     { session: false },

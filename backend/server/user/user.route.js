@@ -2,7 +2,7 @@ const multer = require("multer");
 const express = require("express");
 const jwtAuth = require("../middleware/jwtAuth");
 
-const userCtrl = require("../controller/user");
+const userCtrl = require("./user.controller");
 const upload = multer();
 
 const router = express.Router();

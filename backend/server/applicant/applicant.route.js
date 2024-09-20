@@ -1,7 +1,7 @@
 const express = require("express");
 const jwtAuth = require("../middleware/jwtAuth");
 
-const userCtrl = require("../controller/user");
+const userCtrl = require("../user/user.controller");
 
 const router = express.Router();
 

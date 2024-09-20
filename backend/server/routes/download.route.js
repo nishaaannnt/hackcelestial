@@ -6,29 +6,6 @@ const ApplicantSchema = mongoose.model("JobApplicantInfo");
 
 const router = express.Router();
 
-// router.get("/resume/:id", (req, res) => {
-//   const fileResume = req.params.id;
-//   const filePath = path.join(__dirname, "./files", fileResume);
-//   try {
-//     fs.access(filePath, fs.F_OK, (err) => {
-//       if (err) {
-//         res.status(404).json({
-//           message: "File not found",
-//         });
-//         return;
-//       }
-//       res.download(filePath, (err) => {
-//         if (err) {
-//           console.log(err);
-//           res.status(400).json({ message: "Don't download file PDF" });
-//         }
-//       });
-//     });
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).json(error.message);
-//   }
-// });
 router.get("/resume/:id", async (req, res) => {
   const id = req.params.id;
   console.log("id:", id);

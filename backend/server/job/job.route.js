@@ -1,5 +1,5 @@
 const express = require("express");
-const jobCtrl = require("../controller/job");
+const jobCtrl = require("./job.controller");
 
 // Middleware for JWT authentication
 const jwtAuth = require("../middleware/jwtAuth");

@@ -14,6 +14,7 @@ import {
   faSwimmer,
   faTh,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { userType } from "libs/isAuth";
@@ -21,6 +22,7 @@ import { userType } from "libs/isAuth";
 export default function Jumbotron() {
   let [isOpen, setIsOpen] = useState(false);
   const type = userType();
+  const history = useNavigate();
   function closeModal() {
     setIsOpen(false);
   }
@@ -137,7 +139,7 @@ export default function Jumbotron() {
               <p className="text-white mt-2">
                 Get an AI expert to build your resume from scratch.
               </p>
-              <button className="mt-4 bg-white text-black-600 font-semibold py-2 px-4 rounded-full hover:bg-gray-200 transition">
+              <button onClick={()=>history("/ai-resume")} className="mt-4 bg-white text-black-600 font-semibold py-2 px-4 rounded-full hover:bg-gray-200 transition">
                 View details
               </button>
             </div>

@@ -27,7 +27,7 @@ router.get("/resume/:id", async (req, res) => {
         .status(404)
         .json({ message: "Resume not found for this applicant" });
     }
-    const filePath = path.join(__dirname, "../files", applicant.resume);
+    const filePath = path.join(__dirname, "../../store/files", applicant.resume);
     console.log("filePath:", filePath);
     fs.access(filePath, fs.F_OK, (err) => {
       if (err) {

@@ -146,31 +146,6 @@ export default function SignUp() {
   };
 
   const handleLogin = async () => {
-    // if (signupDetails.name === "") {
-    //   setInputErrorHandler((prev) => ({
-    //     ...prev,
-    //     name: {
-    //       message: "name is required",
-    //     },
-    //   }));
-    //   return;
-    // } else if (signupDetails.email === "") {
-    //   setInputErrorHandler((prev) => ({
-    //     ...prev,
-    //     email: {
-    //       message: "email is required",
-    //     },
-    //   }));
-    //   return;
-    // } else if (signupDetails.password === "") {
-    //   setInputErrorHandler((prev) => ({
-    //     ...prev,
-    //     password: {
-    //       message: "password is required",
-    //     },
-    //   }));
-    //   return;
-    // }
     try {
       const tmpErrorHandler = {};
       Object.keys(inputErrorHandler).forEach((obj) => {
@@ -373,7 +348,7 @@ export default function SignUp() {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] md:py-24">
-      <div className="bg-white rounded-2xl pt-10 md:px-8 px-6 pb-8 text-left md:w-4/12 w-11/12 mx-auto shadow-md">
+      <div className="bg-white rounded-2xl pt-10 md:px-8 px-6 pb-8 text-left md:w-1/2 w-11/12 mx-auto shadow-md">
         <h2 className="text-4xl font-semibold text-gray-900 leading-none">
           Welcome to Job Portal
         </h2>
@@ -659,11 +634,11 @@ export default function SignUp() {
               ? handleLogin()
               : handleLoginRecruiter();
           }}
-        // disabled={
-        //   (signupDetails.type === "applicant" &&
-        //     !allFieldsCheckedApplicant) ||
-        //   (signupDetails.type === "recruiter" && !allFieldsCheckedRecruiter)
-        // }
+        disabled={
+          (signupDetails.type === "applicant" &&
+            !allFieldsCheckedApplicant) ||
+          (signupDetails.type === "recruiter" && !allFieldsCheckedRecruiter)
+        }
         >
           Create your account
         </button>

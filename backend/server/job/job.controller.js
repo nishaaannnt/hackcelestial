@@ -1,5 +1,6 @@
 const JobHandler = require("./job.handler");
 const ApplicationHandler = require("../application/application.handler");
+const applicantHandler = require("../applicant/applicant.handler");
 
 // Function to add a new job
 const addJob = async (req, res) => {
@@ -246,7 +247,15 @@ const applyJob = async (req, res) => {
           "You already have an accepted job. Hence you cannot apply for a new one.",
       });
     }
-
+    const hasResume = await applicantHandler.getApplicantObjByQuery({
+      userId: user._id
+    },{resume:1});
+    if (hasResume.resume == "") {
+      return res.status(400).json({
+        message:
+          "Please Upload a valid resume on your profile.",
+      });
+    }
     const data = req.body;
     const jobId = req.params.id;
 

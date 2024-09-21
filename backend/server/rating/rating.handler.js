@@ -12,7 +12,7 @@ async function addRatings(body){
 
 async function getAllDocumentsCount(query){
     try{
-        return await Sellers.find(query).count();
+        return await Ratings.find(query).count();
     }catch (e) {
         throw e;
     }

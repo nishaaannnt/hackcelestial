@@ -24,7 +24,7 @@ import CookiePolicy from "../pages/landingPage/AboutUs/CookiePolicy";
 import AdminJob from "../pages/admin/AdminJob";
 import TalentPool from "../pages/admin/TalentPool";
 import InfoRecruiter from "../pages/landingPage/InfoRecruiter";
-import { Dashboard } from "../pages/Admin1/Dashboard";
+import { Dashboard } from "../pages/users/Dashboard";
 import BlogHome from "components/blog/home-blog";
 import DetailNews from "components/blog/body-news/DetailNews";
 import { userType } from 'libs/isAuth';

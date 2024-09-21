@@ -8,6 +8,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
 import { userType } from "libs/isAuth";
 
+
 const th = ["Job", "Job type", "Skill", "Date upload", "Delete job"];
 
 export default function Job() {
@@ -100,8 +101,13 @@ export default function Job() {
 
   return (
     <>
-      <div className="mt-12 overflow-x-auto bg-white rounded-md">
-        <table className="min-w-full z-0">
+      <div className="mt-12 overflow-x-auto rounded-md">
+      <button onClick={()=>history('/create-new-job')}
+            className="bg-[#F8BD8D] float-right text-white font-bold py-2 my-2 px-4 rounded-lg hover:bg-[#ffb274] focus:outline-none"
+            >
+              Create a job
+            </button>
+        <table className="min-w-full  bg-white z-0">
           <thead className="border-b border-t rounded-md border-gray-400">
             <tr>
               {th.map((t) => (

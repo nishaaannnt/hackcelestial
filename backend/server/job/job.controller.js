@@ -6,7 +6,7 @@ const applicantHandler = require("../applicant/applicant.handler");
 const addJob = async (req, res) => {
   const user = req.user;
 
-  if (user.type !== "recruiter") {
+  if (user.type == "applicant") {
     return res.status(401).json({ message: "You don't have permissions to add jobs" });
   }
 

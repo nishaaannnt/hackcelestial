@@ -1,6 +1,6 @@
 export const server =
   // "https://LINK-6qtv.onrender.com/api";
-  "http://localhost:8000/api";
+  "https://hackcelestial.onrender.com/";
 
 const apiList = {
   login: `${server}/auth/login`,

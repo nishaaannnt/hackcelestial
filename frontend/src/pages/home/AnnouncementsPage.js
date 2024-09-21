@@ -10,7 +10,7 @@ const AnnouncementsPage = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/announcements', {
+        const response = await axios.get('https://hackcelestial.onrender.com//announcements', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

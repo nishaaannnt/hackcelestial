@@ -1,5 +1,5 @@
 import axios from 'axios';
-let server = "http://localhost:8000/api"
+let server = "https://hackcelestial.onrender.com/"
 
 class User {
     getUser(body) {

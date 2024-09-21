@@ -16,7 +16,7 @@ const AnnouncementsPage = () => {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/announcements',{
+      const response = await axios.get('https://hackcelestial.onrender.com//announcements',{
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -36,7 +36,7 @@ const AnnouncementsPage = () => {
       if (selectedAnnouncement) {
         // Update
         console.log(selectedAnnouncement);
-        await axios.put(`http://localhost:8000/api/announcements/${selectedAnnouncement._id}`,
+        await axios.put(`https://hackcelestial.onrender.com//announcements/${selectedAnnouncement._id}`,
             announcementData, 
             {
               headers: {
@@ -47,7 +47,7 @@ const AnnouncementsPage = () => {
         setSuccess("Announcement updated successfully!");
       } else {
         // Create
-        await axios.post('http://localhost:8000/api/announcements', 
+        await axios.post('https://hackcelestial.onrender.com//announcements', 
             announcementData, 
             {
               headers: {
@@ -73,7 +73,7 @@ const AnnouncementsPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/announcements/${id}`);
+      await axios.delete(`https://hackcelestial.onrender.com//announcements/${id}`);
       setAnnouncements(announcements.filter((a) => a.id !== id));
       setSuccess("Announcement deleted successfully!");
     } catch (err) {

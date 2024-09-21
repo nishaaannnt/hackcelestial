@@ -75,7 +75,7 @@ export default function JobAd({ job, tags, about, edit }) {
               <img
                 alt="company logo"
                 className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-                src={recruiter.profile || "company.png"}
+                src={recruiter?.profile || "company.png"}
                 key={index}
               />
             ))}
@@ -224,7 +224,7 @@ export default function JobAd({ job, tags, about, edit }) {
                     <img
                       alt="company logo"
                       className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-                      src={recruiter.profile  || "company.png"}
+                      src={recruiter?.profile  || "company.png"}
                       key={index}
                     />
                   ))}
@@ -265,7 +265,7 @@ export default function JobAd({ job, tags, about, edit }) {
                 />
                 
                 <h6 className="md:text-xl text-lg font-bold text-gray-500">
-                  {about.rating}
+                  {about.rating === -1 ? 0 :about.rating}
                 </h6>
               </div>
               <div className="flex gap-3">

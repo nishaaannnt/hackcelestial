@@ -54,13 +54,46 @@ const getAllApplications = async (req, res) => {
   console.log("User ID:", user._id);
 };
 
-const getAll = async (req, res) => {
+const getApplicationsByUserId = async (req, res) => {
   try {
-    const all = await applicationHandler.getApplicationByQuery();
-
-    // const allUsers = [...allRecruiter, ...allJobApplicant];
-
-    res.status(200).json({ all, message: "show all user successfully" });
+    const user = req.user;
+    console.log(user,"nishant");
+    const applications = await applicationHandler.getAggregateQuery([
+      {
+        $lookup: {
+          from: "jobapplicantinfos",
+          localField: "userId",
+          foreignField: "userId",
+          as: "jobApplicant",
+        },
+      },
+      { $unwind: "$jobApplicant" },
+      {$match:{userId : await applicationHandler.convertObjectId(user._id)}},
+      {
+        $lookup: {
+          from: "jobs",
+          localField: "jobId",
+          foreignField: "_id",
+          as: "job",
+        },
+      },
+      { $unwind: "$job" },
+      {
+        $lookup: {
+          from: "recruiterinfos",
+          localField: "recruiterId",
+          foreignField: "userId",
+          as: "recruiter",
+        },
+      },
+      { $unwind: "$recruiter" },
+      {
+        $sort: {
+          dateOfApplication: -1,
+        },
+      },
+    ]);
+    res.status(200).json({ applications, message: "show all user successfully" });
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ message: error.message });
@@ -250,4 +283,5 @@ const updateStatusApplication = async (req, res) => {
 module.exports = {
   getAllApplications,
   updateStatusApplication,
+  getApplicationsByUserId
 };

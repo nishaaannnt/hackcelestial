@@ -32,9 +32,10 @@ import TalentPool from "./pages/admin/TalentPool";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InfoRecruiter from "./pages/landingPage/InfoRecruiter";
-import { Dashboard } from "./pages/Admin1/Dashboard";
+import { Dashboard } from "./pages/users/Dashboard";
 import BlogHome from "components/blog/home-blog";
 import DetailNews from "components/blog/body-news/DetailNews";
+import Aireview  from './pages/users/Aireview';
 
 export const SetPopupContext = createContext();
 
@@ -138,6 +139,7 @@ export default function App() {
           <Route exact path="/blog/news" />
           <Route exact path="/blog/news/:id" element={<DetailNews />} />
           <Route exact path="/blog/programming-language" />
+          <Route exact path="/ai-resume" element={<Aireview />} />
         </Routes>
         <Footer />
       </Router>

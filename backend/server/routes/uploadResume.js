@@ -3,10 +3,11 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const ApplicantSchema = mongoose.model("JobApplicantInfo");
 const router = express.Router();
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./files");
+    cb(null, path.join(__dirname,"../../store/files"));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);

@@ -106,7 +106,9 @@ async function updateUser(req, res, next) {
       jobApplicant.profile = data.profile || jobApplicant.profile;
       jobApplicant.dateOfBirth = data.dateOfBirth || jobApplicant.dateOfBirth;
 
-      await JobApplicantHandler.addApplicant(jobApplicant);
+      await JobApplicantHandler.updateJobApplicant({
+        userId: user._id,
+      },jobApplicant);
     }
 
     res.json({ message: "User information updated successfully" });

@@ -7,7 +7,8 @@ import {
   faCogs,
   faPoll,
   faSwimmingPool,
-  faUsers
+  faUsers,
+  faVolumeLow
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { userType } from "libs/isAuth";
@@ -102,7 +103,16 @@ export default function ProfileMenu() {
                       className="flex items-center text-left p-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
                     >
                       <FontAwesomeIcon icon={faUsers} className="mr-3" />
-                      My referrals
+                      My Applications
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link
+                      to="/announcements"
+                      className="flex items-center text-left p-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                    >
+                     <FontAwesomeIcon icon={faVolumeLow} className="mr-3"/>
+                      Announcements
                     </Link>
                   </Menu.Item>
 

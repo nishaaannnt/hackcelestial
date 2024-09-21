@@ -36,6 +36,8 @@ import { Dashboard } from "./pages/users/Dashboard";
 import BlogHome from "components/blog/home-blog";
 import DetailNews from "components/blog/body-news/DetailNews";
 import Aireview  from './pages/users/Aireview';
+import CreateAnnouncement from "pages/admin/CreateAnnouncement";
+import AnnouncementsPage from "pages/home/AnnouncementsPage";
 
 export const SetPopupContext = createContext();
 
@@ -133,7 +135,9 @@ export default function App() {
 
           <Route exact path="/applicant/settings" element={<Settings />} />
           <Route exact path="/admin/settings" element={<AdminSettings />} />
+          <Route exact path="/admin/announcement" element={<CreateAnnouncement />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/announcements" element={<AnnouncementsPage />} />
 
           <Route exact path="/blog/*" element={<BlogHome />} />
           <Route exact path="/blog/news" />

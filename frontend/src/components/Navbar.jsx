@@ -34,18 +34,18 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
-                <Link
+                {/* {/* <Link
                   className="lg:block hidden text-[#333333] text-lg font-semibold pl-3 pr-6 py-2 hover:opacity-60"
                   to="/blog/news"
                 >
                   News
-                </Link>
+                </Link> */}
                 <Link
                   className="lg:block hidden text-[#333333] text-lg font-semibold pl-3 pr-6 py-2 hover:opacity-60"
-                  to="/blog/programming-language"
+                  to="/ai-resume"
                 >
-                  Programming Language
-                </Link>
+                  Resume Review
+                </Link> 
               </div>
             </div>
           )}

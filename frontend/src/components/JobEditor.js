@@ -128,7 +128,6 @@ export default function JobEditor({ jobToEdit, props }) {
   };
 
   const handleJobUpdate = () => {
-    console.log("fetch: ", `${apiList.jobs}/${id}`);
     axios
       .put(`${apiList.jobs}/${id}`, jobDetails, {
         headers: {
@@ -159,30 +158,26 @@ export default function JobEditor({ jobToEdit, props }) {
     <div className="w-1/2 mx-auto gap-2 mt-32 grid">
       <div className="bg-light p-1 rounded-xl w-56 justify-self-end ">
         <button
-          className={`${
-            editing ? "bg-white text-black" : "bg-light text-gray-400"
-          } px-5 py-2 bg-white rounded-xl mr-1 font-medium`}
+          className={`${editing ? "bg-white text-black" : "bg-light text-gray-400"
+            } px-5 py-2 bg-white rounded-xl mr-1 font-medium`}
           onClick={() => setEditing(true)}
         >
           <FontAwesomeIcon
             icon={faPen}
-            className={`${
-              editing ? "text-money" : "text-gray-400"
-            } mr-2.5 text-sm`}
+            className={`${editing ? "text-money" : "text-gray-400"
+              } mr-2.5 text-sm`}
           />
           Edit
         </button>
         <button
-          className={`${
-            !editing ? "bg-white text-black" : "bg-light text-gray-400"
-          } px-4 py-2 bg-white rounded-xl font-medium`}
+          className={`${!editing ? "bg-white text-black" : "bg-light text-gray-400"
+            } px-4 py-2 bg-white rounded-xl font-medium`}
           onClick={() => setEditing(false)}
         >
           <FontAwesomeIcon
             icon={faEye}
-            className={`${
-              !editing ? "text-money" : "text-gray-400"
-            } mr-2.5 text-sm`}
+            className={`${!editing ? "text-money" : "text-gray-400"
+              } mr-2.5 text-sm`}
           />
           Preview
         </button>

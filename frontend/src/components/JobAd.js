@@ -75,7 +75,7 @@ export default function JobAd({ job, tags, about, edit }) {
               <img
                 alt="company logo"
                 className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-                src={recruiter.profile}
+                src={recruiter?.profile || "company.png"}
                 key={index}
               />
             ))}
@@ -147,7 +147,7 @@ export default function JobAd({ job, tags, about, edit }) {
             <img
               alt="company logo"
               className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-              src={icon}
+              src={icon  || "company.png"}
             />
 
             <div>
@@ -224,7 +224,7 @@ export default function JobAd({ job, tags, about, edit }) {
                     <img
                       alt="company logo"
                       className="md:h-24 md:w-24 w-20 h-20 md:mr-6 mr-4 rounded-md"
-                      src={recruiter.profile}
+                      src={recruiter?.profile  || "company.png"}
                       key={index}
                     />
                   ))}
@@ -255,23 +255,24 @@ export default function JobAd({ job, tags, about, edit }) {
                   />
                 </span>
               </div>
-              <div className="flex justify-start md:mt-10 mt-10 mb-3 gap-2">
+              <div className="flex justify-start  md:mt-10 mt-10 mb-3 gap-2">
                 {" "}
+                <span className="font-semibold text-gray-500">Rating: </span>
                 <Rating
                   value={about.rating !== -1 ? about.rating : null}
                   className="text-yellow-300"
                   readonly
                 />
-                <span className="font-semibold">-</span>
+                
                 <h6 className="md:text-xl text-lg font-bold text-gray-500">
-                  {about.rating}
+                  {about.rating === -1 ? 0 :about.rating}
                 </h6>
               </div>
               <div className="flex gap-3">
                 <div className="text-bold font-semibold text-gray-500">
                   Skill:{" "}
                 </div>
-                <div className="flex flex-row-reverse gap-1">
+                <div className="flex mb-2 flex-wrap gap-1">
                   {about.skillsets.map((tag, index) => (
                     <div
                       key={index}
@@ -284,11 +285,11 @@ export default function JobAd({ job, tags, about, edit }) {
                 </div>
               </div>
 
-              <div className="w-full flex flex-wrap md:flex-row gap-2 items-center justify-between my-10">
+              <div className="w-full flex flex-wrap md:flex-row gap-2 items-center justify-between my-5">
                 <div className="bg-[#bdf4c8] w-40 h-16 rounded-lg flex flex-col items-center justify-center">
                   <span className="text-sm">Salary</span>
                   <p className="text-lg font-semibold text-gray-700">
-                    $ {about?.salary}
+                  ₹ {about?.salary}
                   </p>
                 </div>
 
@@ -306,26 +307,33 @@ export default function JobAd({ job, tags, about, edit }) {
                   </p>
                 </div>
 
-                <div className="bg-[#cecdff] w-40 h-16 px-6 rounded-lg flex flex-col items-center justify-center">
-                  <span className="text-sm">No. of Vacancies</span>
-                  <p className="text-lg font-semibold text-gray-700">
-                    {about.maxPositions}
-                  </p>
+
+                <div className="w-full">
+                  <div className="flex justify-around -space-x-10">
+                    <div className="bg-[#cecdff] w-40 h-16 px-6 rounded-lg flex flex-col items-center justify-center">
+                      <span className="text-sm">No. of Vacancies</span>
+                      <p className="text-lg font-semibold text-gray-700">
+                        {about.maxPositions}
+                      </p>
+                    </div>
+                    <div
+                      className={`bg-${about.maxPositions - about.acceptedCandidates > 0
+                        ? "yellow-100"
+                        : "gray-400"
+                        } w-42 h-16 px-6 rounded-lg flex flex-col items-center justify-center`}
+                    >
+                      <span className="text-sm">Remaining Positions</span>
+                      <p className="text-lg font-semibold text-gray-700">
+                        {about.maxPositions - about.acceptedCandidates}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+
+
+                
               </div>
               <div className="flex justify-center items-center">
-                <div
-                  className={`bg-${
-                    about.maxPositions - about.acceptedCandidates > 0
-                      ? "yellow-100"
-                      : "gray-400"
-                  } w-42 h-16 px-6 rounded-lg flex flex-col items-center justify-center`}
-                >
-                  <span className="text-sm">Remaining Positions</span>
-                  <p className="text-lg font-semibold text-gray-700">
-                    {about.maxPositions - about.acceptedCandidates}
-                  </p>
-                </div>
               </div>
 
               <div className="w-full gap-4 py-5">
@@ -335,7 +343,7 @@ export default function JobAd({ job, tags, about, edit }) {
               <div className="my-6">
                 <>
                   <p className="text-xl font-semibold">About the job</p>
-                  <div className="text-base">
+                  <div className="text-base  border py-2 px-1 rounded-xl bg-white">
                     {isExpanded ? (
                       <div
                         dangerouslySetInnerHTML={{ __html: about.description }}

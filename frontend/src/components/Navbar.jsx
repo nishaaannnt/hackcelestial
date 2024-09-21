@@ -13,18 +13,17 @@ import Blog from "./blog/Blog";
 export default function Navbar() {
   const linkUrl = useLocation();
 
-  console.log(linkUrl);
-
   return (
-    <Disclosure as="nav" className="bg-[#FFF5EC] w-full">
+    <Disclosure as="nav" className="bg-[#FDF2EA] w-full shadow-md">
+
       <>
         <div className="flex justify-between h-24 py-6 md:w-10/12 w-11/12 mx-auto">
           {linkUrl.pathname.startsWith("/blog") && (
             <div className="flex">
-              <Link className="flex pt-1" to="/blog">
-                <img className="md:pl-5 pl-2" src={logo} alt="logo" />
-                <h1 className="md:pl-2 pl-2 text-2xl sm:text-2xl md:text-3xl text-[#F2994A] font-medium hover:opacity-60">
-                  JobPortal
+              <img className="md:pl-5 pl-2 flex h-2 w-1" src={logo} alt="logo" />
+              <Link className="flex pt-1 text-black" to="/blog">
+                <h1 className="md:pl-2 pl-2 text-2xl sm:text-2xl md:text-3xl text-black font-medium hover:opacity-60">
+                  LINK
                 </h1>
                 <FontAwesomeIcon icon={faBlog} />
               </Link>
@@ -35,18 +34,18 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
-                <Link
+                {/* {/* <Link
                   className="lg:block hidden text-[#333333] text-lg font-semibold pl-3 pr-6 py-2 hover:opacity-60"
                   to="/blog/news"
                 >
                   News
-                </Link>
+                </Link> */}
                 <Link
                   className="lg:block hidden text-[#333333] text-lg font-semibold pl-3 pr-6 py-2 hover:opacity-60"
-                  to="/blog/programming-language"
+                  to="/ai-resume"
                 >
-                  Programming Language
-                </Link>
+                  Resume Review
+                </Link> 
               </div>
             </div>
           )}
@@ -55,8 +54,8 @@ export default function Navbar() {
             <div className="flex">
               <Link className="flex pt-1" to="/">
                 <img className="md:pl-5 pl-2" src={logo} alt="logo" />
-                <h1 className="md:pl-2 pl-2 text-2xl sm:text-2xl md:text-3xl text-[#F2994A] font-medium hover:opacity-60">
-                  JobPortal
+                <h1 className="md:pl-2 pl-2 text-2xl sm:text-2xl md:text-3xl text-black font-medium hover:opacity-60">
+                  LINK
                 </h1>
               </Link>
 
@@ -73,15 +72,10 @@ export default function Navbar() {
                   className="lg:block hidden text-[#333333] text-lg font-semibold pl-3 pr-6 py-2 hover:opacity-60"
                   to="/companies"
                 >
-                  Companies
+                  Recruiter
                 </Link>
 
-                <Link
-                  className="lg:block hidden text-[#333333] text-lg font-semibold pl-3 pr-6 py-2 hover:opacity-60"
-                  to="/leaderboard"
-                >
-                  Leaderboard
-                </Link>
+
                 <Blog />
               </div>
             </div>
@@ -116,7 +110,7 @@ export default function Navbar() {
                       Sign in
                     </Link>
                     <Link
-                      className="lg:block hidden text-center transform ease-in duration-100 hover:-translate-y-1 hover:shadow-lg w-32 justify-center px-8 py-2 mb-1 bg-[#F2994A] text-white rounded-full text-lg font-semibold"
+                      className="lg:block hidden text-center transform ease-in duration-100 hover:-translate-y-1 hover:shadow-lg w-32 justify-center px-8 py-2 mb-1 bg-[#F8BD8D] text-white rounded-full text-lg font-semibold"
                       to="/sign-up"
                     >
                       Sign up

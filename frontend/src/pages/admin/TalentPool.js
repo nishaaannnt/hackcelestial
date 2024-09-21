@@ -1,40 +1,34 @@
 import { useState, useEffect, Fragment } from "react";
-
-import CandidateTable from "components/tables/CandidateTable";
-import { userType } from "libs/isAuth";
-import Loader from "components/Loader";
-import axios from "axios";
-import apiList from "libs/apiList";
-import blog1 from "assets/blogs/blog-1.png";
-import blog2 from "assets/blogs/blog-2.png";
-import blog3 from "assets/blogs/blog-3.png";
-import blog4 from "assets/blogs/blog-4.png";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import news from "data/authors-table-data";
+import User from "services/User";
 
 export default function TalentPool() {
   const [users, setUsers] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [applicant, setApplicant] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [filterUser, setFilterUser] = useState(null);
-
+  async function getusers() {
+    let response = await User.getAllusers();
+    console.log(response)
+    setUsers(response.data.allUser);
+  }
   useEffect(() => {
-    axios.get(apiList.users).then((response) => {
-      setUsers(response.data.allUser);
-    });
+    getusers();
   }, []);
 
-  useEffect(() => {
-    axios.get(apiList.allApplicants).then((response) => {
-      console.log(response.data.allUser);
-      const filteredApplicants = response.data.allUser.filter((user) => {
-        return user.skills.length >= 2 && user.education.length >= 1;
-      });
-      setApplicant(filteredApplicants);
+  async function getAllAplicants() {
+    let response = await User.getAllAplicants();
+    console.log(response.data.allUser);
+    const filteredApplicants = response.data.allUser.filter((user) => {
+      return user.skills.length >= 2 && user.education.length >= 1;
     });
+    setApplicant(filteredApplicants);
+  }
+  useEffect(() => {
+    getAllAplicants();
   }, []);
 
   const openModal = (user) => {
@@ -190,11 +184,9 @@ export default function TalentPool() {
                                   <span className="font-semibold">
                                     {selectedUser.education
                                       .map((edu) => {
-                                        return `${edu.institutionName} (${
-                                          edu.startYear
-                                        }-${
-                                          edu.endYear ? edu.endYear : "Ongoing"
-                                        })`;
+                                        return `${edu.institutionName} (${edu.startYear
+                                          }-${edu.endYear ? edu.endYear : "Ongoing"
+                                          })`;
                                       })
                                       .join(", ")}
                                   </span>

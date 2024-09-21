@@ -96,23 +96,19 @@ export default function CandidateTable() {
           const newIds = response.data.map((app) => app._id);
           const newIdsSet = new Set(newIds);
 
-          // Sử dụng prevState để đảm bảo rằng bạn đang cập nhật từ trạng thái trước đó
           setExistingIds((prevIds) => {
             const existingIdsSet = new Set(prevIds);
             newIdsArray = [...newIdsSet].filter(
               (id) => !existingIdsSet.has(id)
             );
 
-            // Kiểm tra xem có sự thay đổi không trước khi cập nhật
             if (newIdsArray.length > 0) {
               console.log(newIdsArray);
             }
 
-            // Cập nhật danh sách id đã có chỉ với các id mới
             return [...prevIds, ...newIdsArray];
           });
 
-          // Toast ở đây, sau khi cập nhật existingIds
           if (newIdsArray.length > 0) {
             toast.success(
               `Có người apply công việc mới! IDs: ${newIdsArray.join(", ")}`

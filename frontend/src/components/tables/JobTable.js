@@ -52,12 +52,12 @@ export default function JobTable({ jobs }) {
           let countResponse;
 
           try {
-            countResponse = await axios.get(countAddress, {
+            let countResponse = await axios.get(countAddress, {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
               },
             });
-
+            console.log(countResponse)
             counts[job._id] = countResponse.data.length;
           } catch (error) {
             console.error(`Error fetching count for job ${job._id}`, error);
@@ -209,7 +209,7 @@ export default function JobTable({ jobs }) {
                     >
                       {currentJob.jobType}
                     </td>
-                    <td
+                    <td0
                       className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
                       onClick={() => handleClick(currentJob._id)}
                     >
@@ -224,7 +224,7 @@ export default function JobTable({ jobs }) {
                           </div>
                         ))}
                       </div>
-                    </td>
+                    </td0>
                     {/* <ReferralCount
                     id={currentJob._id}
                     handleClick={handleClick}

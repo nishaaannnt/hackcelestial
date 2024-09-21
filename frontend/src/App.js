@@ -1,46 +1,48 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import About from "pages/landingPage/AboutUs/About";
-import Home from "pages/landingPage/Home";
+import About from "./pages/landingPage/AboutUs/About";
+import Home from "./pages/landingPage/Home";
 import { React, createContext, useEffect, useState } from "react";
-import PrivacyPolicy from "pages/landingPage/AboutUs/PrivacyPolicy";
+import PrivacyPolicy from "./pages/landingPage/AboutUs/PrivacyPolicy";
 import Navbar from "components/Navbar";
 import InfoBar from "components/InfoBar";
 import ScrollToTop from "hooks/ScrollToTop";
-import Companies from "pages/landingPage/Companies";
+import Companies from "./pages/landingPage/Companies";
 import Footer from "components/Footer";
-import SignIn from "pages/landingPage/SignIn/SignIn";
-import SignUp from "pages/landingPage/SignUp/SignUp";
-import Jobs from "pages/landingPage/Jobs";
-import ForRecruiter from "pages/landingPage/For/ForRecruiter";
-import ForApplicant from "pages/landingPage/For/ForApplicant";
-import Leaderboard from "pages/home/Leaderboard";
-import ResetPassword from "pages/landingPage/SignIn/ResetPassword";
+import SignIn from "./pages/landingPage/SignIn/SignIn";
+import SignUp from "./pages/landingPage/SignUp/SignUp";
+import Jobs from "./pages/landingPage/Jobs";
+import ForRecruiter from "./pages/landingPage/For/ForRecruiter";
+import ForApplicant from "./pages/landingPage/For/ForApplicant";
+import Leaderboard from "./pages/home/Leaderboard";
+import ResetPassword from "./pages/landingPage/SignIn/ResetPassword";
 import { userType } from "libs/isAuth";
-import Referrals from "pages/home/Referrals";
-import Settings from "pages/home/Settings";
-import Logout from "pages/landingPage/Logout";
-import AdminAddJob from "pages/admin/AdminAddJob";
-import Recovered from "pages/landingPage/SignIn/EmailVerify/Recovered";
-import { Reset } from "pages/landingPage/SignIn/Reset";
-import Job from "pages/landingPage/Job";
-import Refer from "pages/landingPage/Refer";
-import AdminJobs from "pages/admin/AdminJobs";
-import AdminSettings from "pages/admin/AdminSettings";
-import CookiePolicy from "pages/landingPage/AboutUs/CookiePolicy";
-import AdminJob from "pages/admin/AdminJob";
-import TalentPool from "pages/admin/TalentPool";
+import Referrals from "./pages/home/Referrals";
+import Settings from "./pages/home/Settings";
+import Logout from "./pages/landingPage/Logout";
+import AdminAddJob from "././pages/admin/AdminAddJob";
+import Recovered from "./pages/landingPage/SignIn/EmailVerify/Recovered";
+import { Reset } from "./pages/landingPage/SignIn/Reset";
+import Job from "./pages/landingPage/Job";
+import Refer from "./pages/landingPage/Refer";
+import AdminJobs from "./pages/admin/AdminJobs";
+import AdminSettings from "./pages/admin/AdminSettings";
+import CookiePolicy from "./pages/landingPage/AboutUs/CookiePolicy";
+import AdminJob from "./pages/admin/AdminJob";
+import TalentPool from "./pages/admin/TalentPool";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import InfoRecruiter from "pages/landingPage/InfoRecruiter";
-import { Dashboard } from "pages/Admin1/Dashboard";
+import InfoRecruiter from "./pages/landingPage/InfoRecruiter";
+import { Dashboard } from "./pages/users/Dashboard";
 import BlogHome from "components/blog/home-blog";
 import DetailNews from "components/blog/body-news/DetailNews";
+import Aireview  from './pages/users/Aireview';
+import CreateAnnouncement from "pages/admin/CreateAnnouncement";
+import AnnouncementsPage from "pages/home/AnnouncementsPage";
 
 export const SetPopupContext = createContext();
 
 export default function App() {
   const type = userType();
-  console.log("type: " + type);
   const [popup, setPopup] = useState({
     open: false,
     icon: "",
@@ -133,12 +135,15 @@ export default function App() {
 
           <Route exact path="/applicant/settings" element={<Settings />} />
           <Route exact path="/admin/settings" element={<AdminSettings />} />
+          <Route exact path="/admin/announcement" element={<CreateAnnouncement />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/announcements" element={<AnnouncementsPage />} />
 
           <Route exact path="/blog/*" element={<BlogHome />} />
           <Route exact path="/blog/news" />
           <Route exact path="/blog/news/:id" element={<DetailNews />} />
           <Route exact path="/blog/programming-language" />
+          <Route exact path="/ai-resume" element={<Aireview />} />
         </Routes>
         <Footer />
       </Router>

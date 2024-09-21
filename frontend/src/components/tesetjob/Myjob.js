@@ -142,118 +142,118 @@ const Myjob = ({ job }, index) => {
         hover:-translate-y-2 hover:shadow-lg w-full h-full
       bg-white rounded-2xl p-6 text-left cursor-default"
       >
-        <div className="flex items-center text-left pb-4">
-          {recruiters.map((recruiter, index) => (
-            <img
-              className="w-14 h-14 rounded-2xl mr-4"
-              key={index}
-              src={recruiter.profile}
-              alt="Company logo"
-            />
-          ))}
-          <div>
-            <p className="text-2xl font-bold text-gray-900 leading-none">
-              {job.title}
-            </p>
-            <p className="text-md text-gray-600">
-              Posted By : {job.recruiter.name}
-            </p>
-          </div>
-        </div>
-        {job.rating !== -1 && (
-          <div className="pl-1 pb-1 flex gap-2">
-            <Rating
-              className="text-yellow-400"
-              value={job.rating || null}
-              readonly
-            />
-            <span className="font-semibold">-</span>
-            <h6 className="md:text-xl text-lg font-bold text-gray-500">
-              {job.rating}
-            </h6>
-          </div>
-        )}
-        <p className="pl-1 pb-1">
-          <FontAwesomeIcon
-            icon={faMoneyBillWave}
-            className="text-xl text-green-500 mr-2"
-          />
-          <span className="text-xl font-medium">{job.salary} $</span>
-          <span className="text-sm font-semibold tracking-wide">
-            {" "}
-            / hiring reward
-          </span>
-        </p>
-        <p className="pl-1">
-          <FontAwesomeIcon
-            icon={faHourglassHalf}
-            className="text-xl text-orange-400 mr-3.5 ml-1"
-          />
-          <span className="text-base font-semibold tracking-wide">
-            Duration:{" "}
-            <span className="font-medium text-xl">
-              {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
-            </span>
-          </span>
-        </p>
-        <p className="pl-1">
-          <FontAwesomeIcon
-            icon={faMapMarkerAlt}
-            className="text-xl text-orange-400 mr-3.5 ml-1"
-          />
-          <span className="text-base font-semibold tracking-wide">
-            Location:{" "}
-            <span className="font-medium text-xl">{job.location}</span>
-          </span>
-        </p>
-
-        <p className="pl-1">
-          <FontAwesomeIcon
-            icon={faCalendarDays}
-            className="text-xl text-red-500 mr-3 ml-1"
-          />
-          <span className="text-base font-semibold tracking-wide">
-            Date Of Posting:{" "}
-            <span className="font-medium text-xl">
-              {calculateDays(new Date(job.dateOfPosting))}
-            </span>
-          </span>
-        </p>
-        <p className="pl-1">
-          <FontAwesomeIcon
-            icon={faUsers}
-            className="text-xl text-red-500 mr-2"
-          />
-          <span className="text-base font-semibold tracking-wide">
-            Number of Applicants:
-            <span className="font-medium text-xl"> {job.maxApplicants}</span>
-          </span>
-        </p>
-        <p className="pl-1">
-          <FontAwesomeIcon
-            icon={faHand}
-            className="text-xl text-red-500 mr-2"
-          />
-          <span className="text-base font-semibold tracking-wide">
-            Remaining Number of Positions:{" "}
-            <span className="font-medium text-xl">
-              {job.maxPositions - job.acceptedCandidates}
-            </span>
-          </span>
-        </p>
-        <div className="flex items-baseline flex-wrap">
-          {job.skillsets && job.skillsets.length >= 0 ? (
-            <>
-              <FontAwesomeIcon
-                icon={faAward}
-                className="text-xl text-red-500 mr-3 ml-2"
+        <div className="flex flex-col justify-between">
+          <div className="flex items-center text-left pb-4">
+            {recruiters.map((recruiter, index) => (
+              <img
+                className="w-14 h-14 rounded-2xl mr-4"
+                key={index}
+                src={recruiter.profile || "company.png"}
+                alt="Company logo"
               />
-              <span className="text-base font-semibold tracking-wide">
-                Skill:{" "}
+            ))}
+            <div>
+              <p className="text-2xl font-bold text-gray-900 leading-none">
+                {job.title}
+              </p>
+              <p className="text-md text-gray-600">
+                Posted By : {job.recruiter.name}
+              </p>
+            </div>
+          </div>
+          {job.rating !== -1 && (
+            <div className="pl-1 pb-1 flex gap-2">
+              <Rating
+                className="text-yellow-400"
+                value={job.rating || null}
+                readonly
+              />
+              <h6 className="md:text-lg text-lg font-bold text-gray-500">
+                {job.rating === -1 ? 0 : job.rating}
+              </h6>
+            </div>
+          )}
+          <p className="pl-1 pb-1">
+            <FontAwesomeIcon
+              icon={faMoneyBillWave}
+              className="text-xl text-green-500 mr-2"
+            />
+            <span className="text-xl font-medium">{job.salary} ₹</span>
+            <span className="text-sm font-semibold tracking-wide">
+              {" "}
+              / hiring reward
+            </span>
+          </p>
+          <p className="pl-1">
+            <FontAwesomeIcon
+              icon={faHourglassHalf}
+              className="text-xl text-orange-400 mr-3.5 ml-1"
+            />
+            <span className="text-base font-semibold tracking-wide text-gray-600">
+              Duration:{" "}
+              <span className="font-medium text-black">
+                {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
               </span>
-              <div className="pl-1 flex mt-3 gap-2">
-                {job.skillsets
-                  ? job.skillsets.map((skill, index) => (
+            </span>
+          </p>
+          <p className="pl-1">
+            <FontAwesomeIcon
+              icon={faMapMarkerAlt}
+              className="text-xl text-orange-400 mr-3.5 ml-1"
+            />
+            <span className="text-base font-semibold tracking-wide text-gray-600">
+              Location:{" "}
+              <span className="font-medium text-black">{job.location}</span>
+            </span>
+          </p>
+
+          <p className="pl-1">
+            <FontAwesomeIcon
+              icon={faCalendarDays}
+              className="text-xl text-red-500 mr-3 ml-1"
+            />
+            <span className="text-base font-semibold tracking-wide text-gray-600">
+              Date Of Posting:{" "}
+              <span className="font-medium text-black">
+                {calculateDays(new Date(job.dateOfPosting))}
+              </span>
+            </span>
+          </p>
+          <p className="pl-1">
+            <FontAwesomeIcon
+              icon={faUsers}
+              className="text-xl text-red-500 mr-2"
+            />
+            <span className="text-base font-semibold tracking-wide text-gray-600">
+              Number of Applicants:
+              <span className="font-medium text-black"> {job.maxApplicants}</span>
+            </span>
+          </p>
+          <p className="pl-1">
+            <FontAwesomeIcon
+              icon={faHand}
+              className="text-2xl text-yellow-500 mr-2"
+            />
+            <span className="text-base font-semibold tracking-wide text-gray-600">
+              Number of Positions Left:{" "}
+              <span className="font-medium text-black">
+                {job.maxPositions - job.acceptedCandidates}
+              </span>
+            </span>
+          </p>
+          <div className="flex items-baseline flex-wrap">
+            {job.skillsets && job.skillsets.length >= 0 ? (
+              <>
+                <FontAwesomeIcon
+                  icon={faAward}
+                  className="text-xl text-red-500 mr-3 ml-2"
+                />
+                <span className="text-base font-semibold tracking-wide text-gray-600">
+                  Skill:{" "}
+                </span>
+                <div className="pl-1 flex flex-wrap mt-3 gap-2">
+                  {job.skillsets
+                    ? job.skillsets.map((skill, index) => (
                       <div
                         key={index}
                         className="whitespace-nowrap rounded-lg bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white"
@@ -261,24 +261,24 @@ const Myjob = ({ job }, index) => {
                         <span>{skill}</span>
                       </div>
                     ))
-                  : null}
-              </div>
-            </>
-          ) : null}
+                    : null}
+                </div>
+              </>
+            ) : null}
+          </div>
         </div>
         <div className="flex items-center pt-6">
           {userType() === "applicant" && job ? (
             <>
               {job.maxPositions !== undefined &&
-              job.acceptedCandidates !== undefined ? (
+                job.acceptedCandidates !== undefined ? (
                 <>
                   {job.maxPositions - job.acceptedCandidates > 0 ? (
                     <Link
                       className={`hover:opacity-80 ease-out duration-300 flex items-center font-semibold 
-                        text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${
-                          hasAcceptedJob
-                            ? "opacity-50 cursor-not-allowed"
-                            : "cursor-pointer"
+                        text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${hasAcceptedJob
+                          ? "opacity-50 cursor-not-allowed"
+                          : "cursor-pointer"
                         }`}
                       onClick={() => handleApply()}
                       title={

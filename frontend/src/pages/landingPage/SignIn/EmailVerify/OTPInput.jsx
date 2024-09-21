@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useContext } from "react";
 import { SetPopupContext } from "App";
 import axios from "axios";
-import apiList from "../../../../libs/apiList";
 import { useNavigate } from "react-router-dom";
 
 export default function OTPInput() {

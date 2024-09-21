@@ -1,16 +1,14 @@
 import { SetPopupContext } from "App";
-import axios from "axios";
 import InputField from "components/InputField";
-import apiList from "libs/apiList";
 import { getId } from "libs/isAuth";
 import { apiUploadImages } from "libs/uploadImage";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import User from "services/User";
 
 export default function CompanySettings({ profile, user }) {
   const setPopup = useContext(SetPopupContext);
   const getUser = getId();
-
   const [tmpProfile, setTmpProfile] = useState();
   const [originalProfile] = useState(profile);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -33,25 +31,20 @@ export default function CompanySettings({ profile, user }) {
     getData();
   }, []);
 
-  const getData = () => {
-    axios
-      .get(`${apiList.user}/${getUser}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setProfileDetails(response.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        setPopup({
-          open: true,
-          icon: "error",
-          message: "Error",
-        });
+  const getData = async () => {
+    try {
+      let response = await User.getUser({ id: getUser });
+      console.log(response.data);
+      setProfileDetails(response.data);
+    }
+    catch (e) {
+      console.log(e.response);
+      setPopup({
+        open: true,
+        icon: "error",
+        message: "Error",
       });
+    }
   };
 
   const uploadBanner = (e) => {
@@ -70,8 +63,8 @@ export default function CompanySettings({ profile, user }) {
       let formData = new FormData();
       for (let i of files) {
         formData.append("file", i);
-        formData.append("upload_preset", "jobportal");
-        formData.append("folder", "jobportal");
+        formData.append("upload_preset", "LINK");
+        formData.append("folder", "LINK");
         let response = await toast.promise(apiUploadImages(formData), {
           pending: "Uploading images...",
           success: "Images uploaded successfully 👌",
@@ -92,24 +85,14 @@ export default function CompanySettings({ profile, user }) {
 
   const handleUpdate = async () => {
     try {
-      console.log("fetch: ", `${apiList.updateUser}/${getUser}`);
+      // console.log("fetch: ", `${apiList.updateUser}/${getUser}`);
 
       const updatedDetails = {
         ...profileDetails,
       };
 
       console.log("updatedDetails:", updatedDetails);
-
-      const response = await axios.put(
-        `${apiList.updateUser}/${getUser}`,
-        updatedDetails,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-
+      const response = await User.updateUser({ user: getUser, data: updatedDetails })
       console.log("Server response:", response.data);
 
       setPopup({

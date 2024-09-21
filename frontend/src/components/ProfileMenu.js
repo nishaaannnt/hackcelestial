@@ -7,14 +7,14 @@ import {
   faCogs,
   faPoll,
   faSwimmingPool,
-  faUsers
+  faUsers,
+  faVolumeLow
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { userType } from "libs/isAuth";
-import axios from "axios";
 import { getId } from "libs/isAuth";
-import apiList from "libs/apiList";
 import logoadmin from "assets/logo_admin.jpg";
+import User from "services/User";
 
 export default function ProfileMenu() {
   const type = userType();
@@ -27,15 +27,16 @@ export default function ProfileMenu() {
   }
 
   useEffect(() => {
-    axios
-      .get(`${apiList.user}/${getUser}`)
-      .then((response) => {
+    const getuser = async () => {
+      try {
+        let response = await User.getUser({ id: getUser });
         console.log("type", response);
         setUser(response.data);
-      })
-      .catch((err) => {
-        console.log("err: ", err.message);
-      });
+      } catch (e) {
+        console.log(e.message);
+      }
+      getuser();
+    }
   }, [getUser, setUser]);
 
   return (
@@ -102,7 +103,16 @@ export default function ProfileMenu() {
                       className="flex items-center text-left p-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
                     >
                       <FontAwesomeIcon icon={faUsers} className="mr-3" />
-                      My referrals
+                      My Applications
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link
+                      to="/announcements"
+                      className="flex items-center text-left p-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                    >
+                     <FontAwesomeIcon icon={faVolumeLow} className="mr-3"/>
+                      Announcements
                     </Link>
                   </Menu.Item>
 

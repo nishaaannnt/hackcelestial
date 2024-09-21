@@ -1,14 +1,12 @@
 import axios from "axios";
-import JobAd from "components/JobAd";
+import JobAd from "../../components/JobAd";
 import apiList from "../../libs/apiList";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Banner from "components/Banner";
 import { userType } from "libs/isAuth";
 import { SetPopupContext } from "App";
 
 export default function Job(props) {
-  let history = useNavigate();
   const setPopup = useContext(SetPopupContext);
   const { id } = useParams();
   const [job, setJob] = useState();
@@ -78,7 +76,7 @@ export default function Job(props) {
 
   /* const handleClickJob = () => {
     history(`/${}`);
-  }; */
+}; */
 
   useEffect(() => {
     const checkAcceptedJob = async () => {
@@ -161,14 +159,13 @@ export default function Job(props) {
             {userType() === "applicant" && job ? (
               <>
                 {job.maxPositions !== undefined &&
-                job.acceptedCandidates !== undefined ? (
+                  job.acceptedCandidates !== undefined ? (
                   <>
                     {job.maxPositions - job.acceptedCandidates > 0 ? (
                       <Link
                         className={`hover:opacity-80 ease-out duration-300 flex cursor-pointer items-center font-semibold 
-                        text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${
-                          hasAcceptedJob ? "opacity-50 cursor-not-allowed" : ""
-                        }`}
+                        text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${hasAcceptedJob ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
                         onClick={() => handleApply()}
                         title={
                           hasAcceptedJob
@@ -199,12 +196,12 @@ export default function Job(props) {
                 job._id !== id && (
                   <a href={`/jobs/${job._id}`} key={index}>
                     <div
-                      className="w-full h-[30rem] md:w-[20rem] md:h-[18rem] bg-white flex flex-col justify-between shadow-lg 
-                      rounded-md px-3 py-5 text-wrap"
+                      className="w-full max-h-[25rem] md:w-[20rem]  bg-white flex flex-col justify-between shadow-lg 
+                      rounded-md px-4 py-5 text-wrap"
                     >
                       <div className="flex gap-3">
                         <img
-                          src={job?.recruiter.profile}
+                          src={job.recruiter.profile || "company.png"}
                           alt={job?.recruiter.name}
                           className="w-14 h-14"
                         />
@@ -243,7 +240,7 @@ export default function Job(props) {
                         </span>
                       </div>
                       <div>
-                        <div className="flex flex-row gap-1">
+                        <div className="flex flex-row flex-wrap gap-1">
                           {job.skillsets.map((tag, index) => (
                             <div
                               key={index}
@@ -267,11 +264,9 @@ export default function Job(props) {
                 <button
                   key={i}
                   onClick={() => paginate(i + 1)}
-                  className={`mx-1 px-3 py-1 bg-${
-                    selectedPage === i + 1 ? "yellow" : "white"
-                  } text-black border hover:border-yellow-300 rounded ${
-                    selectedPage === i + 1 ? "bg-yellow-200" : ""
-                  }`}
+                  className={`mx-1 px-3 py-1 bg-${selectedPage === i + 1 ? "yellow" : "white"
+                    } text-black border hover:border-yellow-300 rounded ${selectedPage === i + 1 ? "bg-yellow-200" : ""
+                    }`}
                 >
                   {i + 1}
                 </button>
@@ -281,11 +276,11 @@ export default function Job(props) {
         </div>
       </div>
 
-      <Banner
+      {/* <Banner
         title="Looking for something else?"
         button="Explore the job board"
         link="/jobs"
-      />
+      /> */}
     </>
   );
 }

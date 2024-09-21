@@ -1,8 +1,7 @@
 import FAQ from "components/FAQ";
-import Banner from "components/Banner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import icon from "assets/images/help.jpg";
+import icon from "assets/images/help.png";
 
 import {
   faHandPeace,
@@ -16,7 +15,7 @@ export default function ForApplicant() {
     <>
       <div className="bg-white md:pt-32 pt-16">
         <h1 className="max-w-2xl mx-auto text-center md:text-6xl text-4xl font-bold text-gray-900">
-          Greet for Applicant
+          Process for Applicant
         </h1>
         <div
           className="grid lg:grid-cols-3 grid-cols-1 gap-14 md:py-32 py-12
@@ -107,11 +106,11 @@ export default function ForApplicant() {
         answerThree=" You do not have to create a Greeter account to refer your friends
         but it makes the referral process smoother. For example you do not have to add your own personal information each time you submit a referral."
       />
-      <Banner
+      {/* <Banner
         title="Ready to refer someone?"
         button="See available jobs"
         link="/jobs"
-      />
+      /> */}
     </>
   );
 }

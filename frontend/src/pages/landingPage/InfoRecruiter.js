@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-import Loader from "components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCoins,
@@ -19,6 +17,7 @@ import apiList from "../../libs/apiList";
 import { Rating } from "@material-tailwind/react";
 import { userType } from "libs/isAuth";
 import { SetPopupContext } from "App";
+import User from "services/User";
 
 export default function InfoRecruiter() {
   const [hasAcceptedJob, setHasAcceptedJob] = useState(false);
@@ -86,18 +85,18 @@ export default function InfoRecruiter() {
         handleClose();
       });
   };
+  async function getuser() {
+    try {
+      let response = await User.getUser({ id: id })
+      console.log(response);
+      setCompany(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
-    let address = apiList.user;
-    axios
-      .get(`${address}/${id}`)
-      .then((response) => {
-        console.log(response);
-        setCompany(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getuser();
   }, []);
 
   useEffect(() => {
@@ -150,7 +149,7 @@ export default function InfoRecruiter() {
             <img
               alt="company logo"
               className="md:h-24 md:w-24 w-16 h-16 md:mr-6 mr-4 rounded-md"
-              src={company?.profile}
+              src={company?.profile  || "company.png"}
             />
 
             <div>
@@ -205,7 +204,7 @@ export default function InfoRecruiter() {
                       <div className="flex items-center text-left pb-4">
                         <img
                           className="w-14 h-14 rounded-2xl mr-4"
-                          src={company?.profile}
+                          src={company?.profile  || "company.png"}
                           alt="Company logo"
                         />
                         <div>
@@ -225,7 +224,7 @@ export default function InfoRecruiter() {
                         />
                         <span className="font-semibold">-</span>
                         <h6 className="md:text-xl text-lg font-bold text-gray-500">
-                          {job.rating}
+                          {job.rating === -1 ? 0 : job.rating }
                         </h6>
                       </div>
                       <p className="pl-1 pb-1">
@@ -234,7 +233,7 @@ export default function InfoRecruiter() {
                           className="text-xl text-green-500 mr-2"
                         />
                         <span className="text-xl font-medium">
-                          {job.salary} $
+                          {job.salary} ₹
                         </span>
                         <span className="text-sm font-semibold tracking-wide">
                           {" "}
@@ -314,16 +313,16 @@ export default function InfoRecruiter() {
                             <span className="text-base font-semibold tracking-wide">
                               Skill:{" "}
                             </span>
-                            <div className="pl-1 flex mt-3 gap-2">
+                            <div className="pl-1 flex flex-wrap mt-3 gap-2">
                               {job.skillsets
                                 ? job.skillsets.map((skill, index) => (
-                                    <div
-                                      key={index}
-                                      className="whitespace-nowrap rounded-lg bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white"
-                                    >
-                                      <span>{skill}</span>
-                                    </div>
-                                  ))
+                                  <div
+                                    key={index}
+                                    className="whitespace-nowrap rounded-lg bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white"
+                                  >
+                                    <span>{skill}</span>
+                                  </div>
+                                ))
                                 : null}
                             </div>
                           </>
@@ -336,11 +335,10 @@ export default function InfoRecruiter() {
                             {job.maxPositions - job.acceptedCandidates > 0 ? (
                               <Link
                                 className={`hover:opacity-80 ease-out duration-300 flex cursor-pointer items-center font-semibold 
-                                text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${
-                                  hasAcceptedJob
+                                text-md justify-center px-8 py-3 bg-primary rounded-xl text-black ${hasAcceptedJob
                                     ? "opacity-50 cursor-not-allowed"
                                     : ""
-                                }`}
+                                  }`}
                                 onClick={() => handleApply()}
                                 title={
                                   hasAcceptedJob

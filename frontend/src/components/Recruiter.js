@@ -45,7 +45,7 @@ export default function Recruiter(props) {
           <div className="flex items-center text-left pb-4">
             <img
               className="w-16 h-16 rounded-2xl mr-4"
-              src={recruiter.profile}
+              src={recruiter.profile  || "company.png"}
               alt="Company logo"
             />
             <div>
@@ -75,8 +75,8 @@ export default function Recruiter(props) {
               </>
             ) : (
               <div className="pb-4">
-                <span className="font-bold text-lg text-red-500">
-                  Banner is not available!
+                <span className="text-gray-500">
+                  Banner is not available.
                 </span>
               </div>
             )}

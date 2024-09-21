@@ -3,7 +3,7 @@
 
 # Badges
  ![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)
-[![Node.js CI](https://github.com/Nhat-Kha/jobportal/actions/workflows/node.js.yml/badge.svg)](https://github.com/Nhat-Kha/jobportal/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/Nhat-Kha/LINK/actions/workflows/node.js.yml/badge.svg)](https://github.com/Nhat-Kha/LINK/actions/workflows/node.js.yml)
 
 
 
@@ -13,7 +13,7 @@
   - Routes/
   - middleware/
   - Controller/
-  - model/
+  - models/
   - utils/
   - server.js
 - Frontend/
@@ -39,8 +39,8 @@
 # Usage, Installation
 
 ```
-$ git clone https://github.com/Nhat-Kha/jobportal.git
-$ cd jobportal
+$ git clone https://github.com/Nhat-Kha/LINK.git
+$ cd LINK
 ```
 
 ## Frontend
@@ -89,4 +89,4 @@ $ yarn start
 
 # Bugs, issues, and contributing
 
-Found a 🐛? Have a feature request? Feel free to open an [issue](https://github.com/Nhat-Kha/jobportal/issues) or [contributing](https://github.com/Nhat-Kha/jobportal)
+Found a 🐛? Have a feature request? Feel free to open an [issue](https://github.com/Nhat-Kha/LINK/issues) or [contributing](https://github.com/Nhat-Kha/LINK)

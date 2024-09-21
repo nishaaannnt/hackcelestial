@@ -5,6 +5,7 @@ import apiList from "../../../libs/apiList";
 import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Auth from "services/Auth";
 
 export const Reset = () => {
   const { token } = useParams();
@@ -28,7 +29,7 @@ export const Reset = () => {
     if (verified) {
       const data = { ...payload, token };
       try {
-        const response = await axios.put(apiList.reset, data);
+        const response = await Auth.resetPassword(data);
         setPopup({
           open: true,
           icon: "success",
@@ -53,7 +54,7 @@ export const Reset = () => {
     <div>
       <section className="min-h-screen bg-primary">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md bg-white sm:p-8">
+          <div className="w-full p-6  rounded-lg shadow dark:border md:mt-0 sm:max-w-md bg-white sm:p-8">
             <h2 className="text-4xl font-semibold text-gray-900 leading-none">
               Change Password
             </h2>

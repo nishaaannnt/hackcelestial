@@ -9,8 +9,6 @@ import { userType } from "libs/isAuth";
 export default function MobileMenu() {
   const buttonRef = useRef();
   const type = userType();
-
-  console.log("type:", type);
   return (
     <div className="px-4">
       <Popover className="relative">

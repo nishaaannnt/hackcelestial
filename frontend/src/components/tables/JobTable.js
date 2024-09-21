@@ -209,7 +209,7 @@ export default function JobTable({ jobs }) {
                     >
                       {currentJob.jobType}
                     </td>
-                    <td
+                    <td0
                       className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
                       onClick={() => handleClick(currentJob._id)}
                     >
@@ -224,7 +224,7 @@ export default function JobTable({ jobs }) {
                           </div>
                         ))}
                       </div>
-                    </td>
+                    </td0>
                     {/* <ReferralCount
                     id={currentJob._id}
                     handleClick={handleClick}

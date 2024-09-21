@@ -12,6 +12,7 @@ router.get("/", jwtAuth, applicationCtrl.getAllApplications);
 // router.get("/getall", applicationCtrl.getAll);
 // Update the status of an applications, protected by JWT authentication
 router.put("/:id", jwtAuth, applicationCtrl.updateStatusApplication);
+router.get("/getBestFit/:id", jwtAuth, applicationCtrl.getBestApplications);
 
 module.exports = router;
 

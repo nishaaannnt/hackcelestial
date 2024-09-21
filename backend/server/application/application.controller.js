@@ -1,6 +1,67 @@
 const jobHandler = require("../job/job.handler");
 const Job = require("../models/job");
+const { ObjectId } = require('mongodb');
 const applicationHandler = require("./application.handler");
+
+const getBestApplications = async (req, res) => {
+  const jobId = req.params.id;
+  console.log(jobId);
+  try {
+    let convertedJobId = await jobHandler.convertObjectId(jobId);
+    console.log("convertedJobId", convertedJobId);
+    const applications = await applicationHandler.getAggregateQuery([
+      {
+        $lookup: {
+          from: "jobapplicantinfos",
+          localField: "userId",
+          foreignField: "userId",
+          as: "jobApplicant",
+        },
+      },
+      { $unwind: "$jobApplicant" },
+      {
+        $lookup: {
+          from: "jobs",
+          localField: "jobId",
+          foreignField: "_id",
+          as: "job",
+        },
+      },
+      { $unwind: "$job" },
+      {
+        $lookup: {
+          from: "recruiterinfos",
+          localField: "recruiterId",
+          foreignField: "userId",
+          as: "recruiter",
+        },
+      },
+      { $unwind: "$recruiter" },
+      {
+        $addFields: {
+          matchedSkills: {
+            $size: {
+              $setIntersection: ["$job.skillsets", "$jobApplicant.skills"],
+            },
+          },
+        },
+      },
+      {
+        $sort: {
+          dateOfApplication: -1,
+        },
+      },
+    ]);
+    const filteredApplications = applications.filter(application => application.jobId.toString() === "66ed3dfd62d88bbeff0dd115");
+
+    return res.status(200).json({ filteredApplications, message: "show all successfully" });
+
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ message: error.message });
+
+  }
+}
 
 // Function to gets all applications
 const getAllApplications = async (req, res) => {
@@ -248,6 +309,7 @@ const updateStatusApplication = async (req, res) => {
 };
 
 module.exports = {
+  getBestApplications,
   getAllApplications,
   updateStatusApplication,
 };

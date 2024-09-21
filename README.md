@@ -30,13 +30,6 @@
  - Leaderboard, rating job, blog
  - Dashboard admin
 
-# Usage, Installation
-
-```
-$ git clone https://github.com/Nhat-Kha/LINK.git
-$ cd LINK
-```
-
 ## Frontend
 
 `React, Material-UI`

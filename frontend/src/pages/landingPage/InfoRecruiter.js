@@ -224,7 +224,7 @@ export default function InfoRecruiter() {
                         />
                         <span className="font-semibold">-</span>
                         <h6 className="md:text-xl text-lg font-bold text-gray-500">
-                          {job.rating}
+                          {job.rating === -1 ? 0 : job.rating }
                         </h6>
                       </div>
                       <p className="pl-1 pb-1">
@@ -233,7 +233,7 @@ export default function InfoRecruiter() {
                           className="text-xl text-green-500 mr-2"
                         />
                         <span className="text-xl font-medium">
-                          {job.salary} $
+                          {job.salary} ₹
                         </span>
                         <span className="text-sm font-semibold tracking-wide">
                           {" "}

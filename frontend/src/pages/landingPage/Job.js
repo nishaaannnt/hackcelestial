@@ -201,7 +201,7 @@ export default function Job(props) {
                     >
                       <div className="flex gap-3">
                         <img
-                          src={job?.recruiter.profile}
+                          src={job.recruiter.profile || "company.png"}
                           alt={job?.recruiter.name}
                           className="w-14 h-14"
                         />

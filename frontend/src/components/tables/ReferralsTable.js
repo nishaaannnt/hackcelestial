@@ -236,7 +236,7 @@ export default function ReferralsTable(props) {
           </table>
         </div>
       </div>
-      <div>
+      <div className="my-2">
         <span className="font-normal text-slate-500">
           <span className="text-red-500">*</span>If the job is{" "}
           <span className="font-semibold uppercase">accepted</span>, click on

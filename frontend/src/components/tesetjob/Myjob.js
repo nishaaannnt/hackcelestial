@@ -168,9 +168,8 @@ const Myjob = ({ job }, index) => {
                 value={job.rating || null}
                 readonly
               />
-              <span className="font-semibold">-</span>
-              <h6 className="md:text-xl text-lg font-bold text-gray-500">
-                {job.rating}
+              <h6 className="md:text-lg text-lg font-bold text-gray-500">
+                {job.rating === -1 ? 0 : job.rating}
               </h6>
             </div>
           )}
@@ -179,7 +178,7 @@ const Myjob = ({ job }, index) => {
               icon={faMoneyBillWave}
               className="text-xl text-green-500 mr-2"
             />
-            <span className="text-xl font-medium">{job.salary} $</span>
+            <span className="text-xl font-medium">{job.salary} ₹</span>
             <span className="text-sm font-semibold tracking-wide">
               {" "}
               / hiring reward

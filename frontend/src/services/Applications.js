@@ -10,6 +10,15 @@ class Applications {
             throw e;
         }
     }
+    getUserApplications() {
+        try {
+            return axios.get(
+                `${server}/applications/getUserApplications`
+            )
+        } catch (e) {
+            throw e;
+        }
+    }
     updateStatusApplication(body) {
         try {
             return axios.put(

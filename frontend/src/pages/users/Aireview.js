@@ -51,14 +51,14 @@ export default function Aireview() {
 
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-8">
           <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="resume">
+            <label class="block mb-2 text-sm font-medium p-1 text-gray-900 dark:text-white"  htmlFor="resume">
               Upload Resume (PDF or Image)
             </label>
             <input
               type="file"
               accept=".pdf, image/*"
               onChange={handleFileChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+             className="block w-full p-1 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-non dark:border-gray-600 dark:placeholder-gray-400"
               id="resume"
             />
           </div>
@@ -66,7 +66,7 @@ export default function Aireview() {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-[#F8BD8D] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#ffb274] focus:outline-none"
+              className="bg-[#ffb274] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#ffa65d] focus:outline-none"
               disabled={loading}
             >
               {loading ? "Uploading..." : "Get AI Feedback"}

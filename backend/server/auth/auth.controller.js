@@ -226,12 +226,6 @@ const forgotPassword = async (req, res) => {
   const resetToken = user.createPasswordChangedToken();
   await user.save();
   const html = `
-    <p style="font-family: Arial, Helvetica, sans-serif; font-weight: 500; font-size: 14px">
-      Bạn nhận được email này vì bạn hoặc ai đó đã yêu cầu lấy lại mật khẩu
-    </p>
-    <p style="font-family: Arial, Helvetica, sans-serif; font-weight: 500; font-size: 14px">
-      Chọn vào đây để lấy lại mật khẩu, yêu cầu này sẽ mất hiệu lực sau 15 phút:
-    </p>
     <button style="padding: 14px; background-color: #1E90FF; border-radius: 5px; border-style: none; cursor: pointer">
       <a href=${process.env.CLIENT_URL}/password/reset/${resetToken}
         style="color:white; text-decoration-line: none; font-size: 14px; font-weight: 700">

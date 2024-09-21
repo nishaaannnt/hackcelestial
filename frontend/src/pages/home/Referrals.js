@@ -24,7 +24,7 @@ export default function Referrals() {
 
   const getData = () => {
     axios
-      .get(apiList.applications, {
+      .get(apiList.applications+'/getUserApplications/', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

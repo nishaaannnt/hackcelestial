@@ -4,6 +4,7 @@ const jobRouter = require("../job/job.route.js");
 const applicationRouter = require("../application/application.route.js");
 const ratingRouter = require("../rating/rating.route.js");
 const geminiRouter = require("../gemini/gemini.route.js");
+const announcementsRouter = require("../announcements/announcements.route.js");
 const uploadRouter = require("./uploadImage.route.js");
 const ResumeRouter = require("./uploadResume");
 const downloadRouter = require("./download.route.js");
@@ -19,6 +20,7 @@ const initRouter = (app) => {
   app.use("/api/uploadResume", ResumeRouter);
   app.use("/api/download", downloadRouter);
   app.use("/api/review", geminiRouter);
+  app.use("/api/announcements", announcementsRouter);
   app.use("/api/applicants", applicantRouter);
 };
 

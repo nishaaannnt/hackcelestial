@@ -196,8 +196,8 @@ export default function Job(props) {
                 job._id !== id && (
                   <a href={`/jobs/${job._id}`} key={index}>
                     <div
-                      className="w-full h-[30rem] md:w-[20rem] md:h-[18rem] bg-white flex flex-col justify-between shadow-lg 
-                      rounded-md px-3 py-5 text-wrap"
+                      className="w-full max-h-[25rem] md:w-[20rem]  bg-white flex flex-col justify-between shadow-lg 
+                      rounded-md px-4 py-5 text-wrap"
                     >
                       <div className="flex gap-3">
                         <img
@@ -240,7 +240,7 @@ export default function Job(props) {
                         </span>
                       </div>
                       <div>
-                        <div className="flex flex-row gap-1">
+                        <div className="flex flex-row flex-wrap gap-1">
                           {job.skillsets.map((tag, index) => (
                             <div
                               key={index}

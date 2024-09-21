@@ -18,6 +18,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/resume", upload.single("resume"), async (req, res) => {
+  if(!req.file) {
+    return res.status(500).json({message:"No file sent"})
+  }
   const fileName = req.file.filename;
   const id = req.body.userId;
 

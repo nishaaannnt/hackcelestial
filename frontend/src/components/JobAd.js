@@ -255,9 +255,9 @@ export default function JobAd({ job, tags, about, edit }) {
                   />
                 </span>
               </div>
-              <div className="flex justify-start md:mt-10 mt-10 mb-3 gap-2">
+              <div className="flex justify-start  md:mt-10 mt-10 mb-3 gap-2">
                 {" "}
-                <span className="font-semibold">Rating </span>
+                <span className="font-semibold text-gray-500">Rating: </span>
                 <Rating
                   value={about.rating !== -1 ? about.rating : null}
                   className="text-yellow-300"
@@ -272,7 +272,7 @@ export default function JobAd({ job, tags, about, edit }) {
                 <div className="text-bold font-semibold text-gray-500">
                   Skill:{" "}
                 </div>
-                <div className="flex flex-row-reverse flex-wrap gap-1">
+                <div className="flex mb-2 flex-wrap gap-1">
                   {about.skillsets.map((tag, index) => (
                     <div
                       key={index}
@@ -343,7 +343,7 @@ export default function JobAd({ job, tags, about, edit }) {
               <div className="my-6">
                 <>
                   <p className="text-xl font-semibold">About the job</p>
-                  <div className="text-base">
+                  <div className="text-base  border py-2 px-1 rounded-xl bg-white">
                     {isExpanded ? (
                       <div
                         dangerouslySetInnerHTML={{ __html: about.description }}

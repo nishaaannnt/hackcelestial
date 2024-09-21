@@ -1,6 +1,4 @@
-export const server =
-  // "https://LINK-6qtv.onrender.com/api";
-  "http://localhost:8000/api";
+export let server = process.env.REACT_APP_SERVER_API;
 
 const apiList = {
   login: `${server}/auth/login`,

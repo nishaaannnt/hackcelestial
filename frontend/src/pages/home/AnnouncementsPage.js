@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+let server = process.env.REACT_APP_SERVER_API;
 const AnnouncementsPage = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
@@ -10,7 +10,7 @@ const AnnouncementsPage = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/announcements', {
+        const response = await axios.get(`${server}/announcements`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -41,30 +41,30 @@ const AnnouncementsPage = () => {
     <div className="bg-gray-50 min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-6 gap-8 flex">
         <div className=''>
-          <img src='announce.png' className='rounded-3xl h-56'/>
+          <img src='announce.png' className='rounded-3xl h-56' />
         </div>
         <div className='w-[70%]'>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Announcements</h1>
-        <hr className='border mb-6'/>
-        {announcements.length === 0 ? (
-          <p className="text-center text-gray-700">No announcements available.</p>
-        ) : (
-          announcements.map((announcement) => (
-            <div
-              key={announcement.id}
-              className="bg-white hover:shadow-lg shadow-md rounded-lg p-4 mb-6 cursor-pointer"
-              onClick={() => openModal(announcement)}
-            >
-              <div className='w-full justify-between flex'>
-                <div>
-                  <h2 className="text-md text-gray-500 font-semibold">{announcement.userId.name}</h2>
-                  <h2 className="text-2xl font-semibold text-gray-800">{announcement.title}</h2>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Announcements</h1>
+          <hr className='border mb-6' />
+          {announcements.length === 0 ? (
+            <p className="text-center text-gray-700">No announcements available.</p>
+          ) : (
+            announcements.map((announcement) => (
+              <div
+                key={announcement.id}
+                className="bg-white hover:shadow-lg shadow-md rounded-lg p-4 mb-6 cursor-pointer"
+                onClick={() => openModal(announcement)}
+              >
+                <div className='w-full justify-between flex'>
+                  <div>
+                    <h2 className="text-md text-gray-500 font-semibold">{announcement.userId.name}</h2>
+                    <h2 className="text-2xl font-semibold text-gray-800">{announcement.title}</h2>
+                  </div>
+                  <p className="text-gray-500 text-sm mt-4">{new Date(announcement.dateOfAnnouncement).toLocaleString()}</p>
                 </div>
-                <p className="text-gray-500 text-sm mt-4">{new Date(announcement.dateOfAnnouncement).toLocaleString()}</p>
               </div>
-            </div>
-          ))
-        )}
+            ))
+          )}
         </div>
         {/* Modal for showing announcement details */}
         {selectedAnnouncement && (

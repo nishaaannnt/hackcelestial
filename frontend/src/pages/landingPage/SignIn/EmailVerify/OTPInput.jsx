@@ -14,7 +14,7 @@ export default function OTPInput() {
   function resendOTP() {
     if (disable) return;
     axios
-      .post("http://localhost:5000/api/auth/send_recovery_email", {
+      .post(`${server}/auth/send_recovery_email`, {
         OTP: otp,
         recipient_email: email,
       })

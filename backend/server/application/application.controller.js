@@ -5,10 +5,10 @@ const applicationHandler = require("./application.handler");
 
 const getBestApplications = async (req, res) => {
   const jobId = req.params.id;
-  console.log(jobId);
+  // console.log(jobId);
   try {
     let convertedJobId = await jobHandler.convertObjectId(jobId);
-    console.log("convertedJobId", convertedJobId);
+    // console.log("convertedJobId", convertedJobId);
     const applications = await applicationHandler.getAggregateQuery([
       {
         $lookup: {
@@ -28,33 +28,37 @@ const getBestApplications = async (req, res) => {
         },
       },
       { $unwind: "$job" },
-      {
-        $lookup: {
-          from: "recruiterinfos",
-          localField: "recruiterId",
-          foreignField: "userId",
-          as: "recruiter",
-        },
-      },
-      { $unwind: "$recruiter" },
-      {
-        $addFields: {
-          matchedSkills: {
-            $size: {
-              $setIntersection: ["$job.skillsets", "$jobApplicant.skills"],
-            },
-          },
-        },
-      },
+
       {
         $sort: {
           dateOfApplication: -1,
         },
       },
     ]);
-    const filteredApplications = applications.filter(application => application.jobId.toString() === "66ed3dfd62d88bbeff0dd115");
+    const filteredApplications = applications.filter((app) => {
+      return app.job._id.toString() === "66ed40ca5acf6e5d9c64cfdd";
+    });
+    const countMatchingSkills = (jobSkills, applicantSkills) => {
+      const jobSkillsSet = new Set(jobSkills);
+      const applicantSkillsSet = new Set(applicantSkills);
+      return [...jobSkillsSet].filter(skill => applicantSkillsSet.has(skill)).length;
+    };
 
-    return res.status(200).json({ filteredApplications, message: "show all successfully" });
+    // Sort applications by the number of matching skills between job and applicant
+    const sortedApplications = filteredApplications.sort((a, b) => {
+      console.log(b);
+      const jobSkillsA = a.job.skills || [];
+      const applicantSkillsA = a.jobApplicant.skills || [];
+      const matchCountA = countMatchingSkills(jobSkillsA, applicantSkillsA);
+
+      const jobSkillsB = b.job.skills || [];
+      const applicantSkillsB = b.jobApplicant.skills || [];
+      const matchCountB = countMatchingSkills(jobSkillsB, applicantSkillsB);
+
+      // Sort in descending order of matching skills
+      return matchCountB - matchCountA;
+    });
+    return res.status(200).json({ sortedApplications, message: "show all successfully" });
 
   } catch (error) {
     console.log(error.message);
@@ -118,7 +122,7 @@ const getAllApplications = async (req, res) => {
 const getApplicationsByUserId = async (req, res) => {
   try {
     const user = req.user;
-    console.log(user,"nishant");
+    console.log(user, "nishant");
     const applications = await applicationHandler.getAggregateQuery([
       {
         $lookup: {
@@ -129,7 +133,7 @@ const getApplicationsByUserId = async (req, res) => {
         },
       },
       { $unwind: "$jobApplicant" },
-      {$match:{userId : await applicationHandler.convertObjectId(user._id)}},
+      { $match: { userId: await applicationHandler.convertObjectId(user._id) } },
       {
         $lookup: {
           from: "jobs",

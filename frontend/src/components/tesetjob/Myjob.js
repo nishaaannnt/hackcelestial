@@ -251,7 +251,7 @@ const Myjob = ({ job }, index) => {
                 <span className="text-base font-semibold tracking-wide text-gray-600">
                   Skill:{" "}
                 </span>
-                <div className="pl-1 flex mt-3 gap-2">
+                <div className="pl-1 flex flex-wrap mt-3 gap-2">
                   {job.skillsets
                     ? job.skillsets.map((skill, index) => (
                       <div

@@ -54,7 +54,7 @@ export const Reset = () => {
     <div>
       <section className="min-h-screen bg-primary">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md bg-white sm:p-8">
+          <div className="w-full p-6  rounded-lg shadow dark:border md:mt-0 sm:max-w-md bg-white sm:p-8">
             <h2 className="text-4xl font-semibold text-gray-900 leading-none">
               Change Password
             </h2>

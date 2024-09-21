@@ -313,7 +313,7 @@ export default function InfoRecruiter() {
                             <span className="text-base font-semibold tracking-wide">
                               Skill:{" "}
                             </span>
-                            <div className="pl-1 flex mt-3 gap-2">
+                            <div className="pl-1 flex flex-wrap mt-3 gap-2">
                               {job.skillsets
                                 ? job.skillsets.map((skill, index) => (
                                   <div

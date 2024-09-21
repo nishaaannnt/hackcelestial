@@ -272,7 +272,7 @@ export default function JobAd({ job, tags, about, edit }) {
                 <div className="text-bold font-semibold text-gray-500">
                   Skill:{" "}
                 </div>
-                <div className="flex flex-row-reverse gap-1">
+                <div className="flex flex-row-reverse flex-wrap gap-1">
                   {about.skillsets.map((tag, index) => (
                     <div
                       key={index}

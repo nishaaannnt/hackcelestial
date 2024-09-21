@@ -51,14 +51,14 @@ export default function Aireview() {
 
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-8">
           <div className="mb-6">
-            <label class="block mb-2 text-sm font-medium p-1 text-gray-900 dark:text-white"  htmlFor="resume">
+            <label class="block mb-2 bordertext-sm font-medium p-1 text-gray-900 dark:text-white"  htmlFor="resume">
               Upload Resume (PDF or Image)
             </label>
             <input
               type="file"
               accept=".pdf, image/*"
               onChange={handleFileChange}
-             className="block w-full p-1 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-non dark:border-gray-600 dark:placeholder-gray-400"
+             className="block border border-yellow-400  w-full p-1 text-sm text-gray-900 rounded-lg cursor-pointer bg-gray-50 focus:outline-non dark:placeholder-gray-400"
               id="resume"
             />
           </div>

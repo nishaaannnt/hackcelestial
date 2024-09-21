@@ -1,5 +1,5 @@
 import axios from 'axios';
-let server = "http://localhost:8000/api"
+let server = process.env.REACT_APP_SERVER_API;
 
 class User {
     getUser(body) {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnnouncementForm from '../../components/announcement/AnnouncementForm';
 import AnnouncementsList from '../../components/announcement/AnnouncementList';
-
+let server = process.env.REACT_APP_SERVER_API;
 const AnnouncementsPage = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
@@ -16,7 +16,7 @@ const AnnouncementsPage = () => {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/announcements',{
+      const response = await axios.get(`${server}/announcements`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -36,25 +36,25 @@ const AnnouncementsPage = () => {
       if (selectedAnnouncement) {
         // Update
         console.log(selectedAnnouncement);
-        await axios.put(`http://localhost:8000/api/announcements/${selectedAnnouncement._id}`,
-            announcementData, 
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              }
+        await axios.put(`${server}/announcements/${selectedAnnouncement._id}`,
+          announcementData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             }
-          );
+          }
+        );
         setSuccess("Announcement updated successfully!");
       } else {
         // Create
-        await axios.post('http://localhost:8000/api/announcements', 
-            announcementData, 
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              }
+        await axios.post('${server}/announcements',
+          announcementData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             }
-          );
+          }
+        );
         setSuccess("Announcement created successfully!");
       }
 
@@ -73,7 +73,7 @@ const AnnouncementsPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/announcements/${id}`);
+      await axios.delete(`${server}/announcements/${id}`);
       setAnnouncements(announcements.filter((a) => a.id !== id));
       setSuccess("Announcement deleted successfully!");
     } catch (err) {
@@ -93,7 +93,7 @@ const AnnouncementsPage = () => {
         onSubmit={handleCreateOrUpdate}
         loading={loading}
       />
-        <hr/>
+      <hr />
       {/* Announcements list */}
       <AnnouncementsList
         announcements={announcements}

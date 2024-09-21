@@ -1,5 +1,4 @@
 import FAQ from "components/FAQ";
-import Banner from "components/Banner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import icon from "assets/images/help.png";

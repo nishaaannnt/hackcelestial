@@ -21,7 +21,6 @@ export default function Refer() {
   let indices = 3;
   let [index, setIndex] = useState(0);
 
-  let addCandidate = (value) => setCandidate(value);
   let addGeneral = (value) => setGeneral(value);
   let addReferrer = (value) => setReferrer(value);
   let progress = Math.floor((100 / (indices - 1)) * index);

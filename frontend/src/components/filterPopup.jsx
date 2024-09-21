@@ -448,8 +448,8 @@ export default function FilterPopup(props) {
                       <div className="flex justify-start items-center">
                         <div className="w-full flex gap-2">
                           <output className="text-sm text-gray-500 w-2/4 flex justify-center">
-                            {searchOptions.salary[0] * (100000 / 100)}$ -{" "}
-                            {searchOptions.salary[1] * (100000 / 100)}$
+                            {searchOptions.salary[0] * (100000 / 100)}₹ -{" "}
+                            {searchOptions.salary[1] * (100000 / 100)}₹
                           </output>
                           <div className="w-3/4">
                             <input

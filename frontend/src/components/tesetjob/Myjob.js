@@ -179,7 +179,7 @@ const Myjob = ({ job }, index) => {
               icon={faMoneyBillWave}
               className="text-xl text-green-500 mr-2"
             />
-            <span className="text-xl font-medium">{job.salary} $</span>
+            <span className="text-xl font-medium">{job.salary} ₹</span>
             <span className="text-sm font-semibold tracking-wide">
               {" "}
               / hiring reward

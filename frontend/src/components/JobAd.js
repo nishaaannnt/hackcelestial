@@ -289,7 +289,7 @@ export default function JobAd({ job, tags, about, edit }) {
                 <div className="bg-[#bdf4c8] w-40 h-16 rounded-lg flex flex-col items-center justify-center">
                   <span className="text-sm">Salary</span>
                   <p className="text-lg font-semibold text-gray-700">
-                    $ {about?.salary}
+                  ₹ {about?.salary}
                   </p>
                 </div>
 

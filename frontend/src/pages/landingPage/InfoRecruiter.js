@@ -233,7 +233,7 @@ export default function InfoRecruiter() {
                           className="text-xl text-green-500 mr-2"
                         />
                         <span className="text-xl font-medium">
-                          {job.salary} $
+                          {job.salary} ₹
                         </span>
                         <span className="text-sm font-semibold tracking-wide">
                           {" "}

@@ -176,7 +176,7 @@ export default function Applicant() {
             >
               <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex-1 w-[30rem]">
                 <img
-                  src={`${applicant.profile}`}
+                  src={applicant.profile || "user.jpg"}
                   alt={`${applicant.name}'s profile`}
                   className="w-[10rem] h-[10rem] rounded-xl hidden sm:block object-cover"
                 />

@@ -51,7 +51,7 @@ export default function Recruiter() {
           <div key={index} className="flex items-center bg-white rounded-md">
             <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex-1 w-[30rem]">
               <img
-                src={`${recruiter.profile}`}
+                src={recruiter.profile || "company.png"}
                 alt={`${recruiter.name}'s profile`}
                 className="w-[10rem] h-[10rem] rounded-xl"
               />

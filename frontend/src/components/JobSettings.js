@@ -3,7 +3,6 @@ import axios from "axios";
 import apiList from "libs/apiList";
 import { Fragment, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import JobStatus from "./statuses/JobStatus";
 import { SetPopupContext } from "App";
 
 export default function JobSettings({ props }) {
@@ -15,14 +14,6 @@ export default function JobSettings({ props }) {
 
   const [open, setOpen] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
-  const [jobDetails, setJobDetails] = useState(jobs);
-
-  const handleInput = (key, value) => {
-    setJobDetails({
-      ...jobDetails,
-      [key]: value,
-    });
-  };
 
   const handleClick = (location) => {
     history(location);
@@ -32,9 +23,6 @@ export default function JobSettings({ props }) {
     setOpen(false);
   };
 
-  const handleCloseUpdate = () => {
-    setOpenUpdate(false);
-  };
 
   const handleDelete = () => {
     console.log(jobs._id);

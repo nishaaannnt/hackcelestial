@@ -16,7 +16,6 @@ export default function AdminJob() {
   let [active, setActive] = useState(0);
   let [referrals, setReferrals] = useState([]);
   const [jobs, setJobs] = useState([]);
-  const [filterOpen, setFilterOpen] = useState(false);
   const [searchOptions, setSearchOptions] = useState({
     query: "",
     jobType: {
@@ -125,42 +124,39 @@ export default function AdminJob() {
       <div className="pt-32 pb-56 w-10/12 mx-auto min-h-screen">
         {jobs
           ? jobs
-              .filter((job) => job._id === id)
-              .map((job, index) => (
-                <Link to="/admin" className="text-2xl" key={index}>
-                  <FontAwesomeIcon
-                    icon={faChevronLeft}
-                    className="mr-3 text-sm mb-[0.20rem] text-slate-600"
-                  />
-                  <span className="font-normal text-slate-600">
-                    {job.title}
-                  </span>
-                </Link>
-              ))
+            .filter((job) => job._id === id)
+            .map((job, index) => (
+              <Link to="/admin" className="text-2xl" key={index}>
+                <FontAwesomeIcon
+                  icon={faChevronLeft}
+                  className="mr-3 text-sm mb-[0.20rem] text-slate-600"
+                />
+                <span className="font-normal text-slate-600">
+                  {job.title}
+                </span>
+              </Link>
+            ))
           : null}
         <div className="flex mt-6 gap-4 border-b border-gray-300 ">
           <button
-            className={`${
-              active === 0 ? "border-b-2 border-money text-money" : ""
-            } font-medium cursor-pointer px-4 py-4 text-sm text-gray-400`}
+            className={`${active === 0 ? "border-b-2 border-money text-money" : ""
+              } font-medium cursor-pointer px-4 py-4 text-sm text-gray-400`}
             onClick={() => setActive(0)}
           >
             Referrals
           </button>
 
           <button
-            className={`${
-              active === 1 ? "border-b-2 border-money text-money" : ""
-            } font-medium cursor-pointer px-4 py-4 text-sm text-gray-400`}
+            className={`${active === 1 ? "border-b-2 border-money text-money" : ""
+              } font-medium cursor-pointer px-4 py-4 text-sm text-gray-400`}
             onClick={() => setActive(1)}
           >
             Job description
           </button>
 
           <button
-            className={`${
-              active === 2 ? "border-b-2 border-money text-money" : ""
-            } font-medium cursor-pointer px-4 py-4 text-sm text-gray-400`}
+            className={`${active === 2 ? "border-b-2 border-money text-money" : ""
+              } font-medium cursor-pointer px-4 py-4 text-sm text-gray-400`}
             onClick={() => setActive(2)}
           >
             Job settings

@@ -13,16 +13,14 @@ import Blog from "./blog/Blog";
 export default function Navbar() {
   const linkUrl = useLocation();
 
-  // console.log(linkUrl);
-
   return (
     <Disclosure as="nav" className="bg-[#FDF2EA] w-full shadow-md">
 
-      <> 
+      <>
         <div className="flex justify-between h-24 py-6 md:w-10/12 w-11/12 mx-auto">
           {linkUrl.pathname.startsWith("/blog") && (
             <div className="flex">
-              <img className="md:pl-5 pl-2 flex h-2 w-1"src={logo} alt="logo" />
+              <img className="md:pl-5 pl-2 flex h-2 w-1" src={logo} alt="logo" />
               <Link className="flex pt-1 text-black" to="/blog">
                 <h1 className="md:pl-2 pl-2 text-2xl sm:text-2xl md:text-3xl text-black font-medium hover:opacity-60">
                   LINK
@@ -77,7 +75,7 @@ export default function Navbar() {
                   Recruiter
                 </Link>
 
-              
+
                 <Blog />
               </div>
             </div>

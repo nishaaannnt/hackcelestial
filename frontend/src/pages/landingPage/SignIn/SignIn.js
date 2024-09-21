@@ -2,9 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import InputField from "components/InputField";
 import { SetPopupContext } from "App";
-import axios from "axios";
 import isAuth from "libs/isAuth";
-import apiList from "../../../libs/apiList";
 import { userType } from "libs/isAuth";
 import Auth from "services/Auth";
 

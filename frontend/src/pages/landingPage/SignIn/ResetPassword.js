@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import InputField from "components/InputField";
-import apiList from "../../../libs/apiList";
-import axios from "axios";
 import { SetPopupContext } from "App";
 import { userType } from "libs/isAuth";
 import { useNavigate } from "react-router-dom";

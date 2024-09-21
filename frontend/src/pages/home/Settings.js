@@ -5,18 +5,15 @@ import axios from "axios";
 import { SetPopupContext } from "App";
 import apiList from "../../libs/apiList";
 import { getId } from "libs/isAuth";
-import { useParams } from "react-router-dom";
 import { MuiChipsInput } from "mui-chips-input";
 import User from "services/User";
 
 export default function Settings() {
   const setPopup = useContext(SetPopupContext);
   const getUser = getId();
-  const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
   const [imagesPreview, setImagesPreview] = useState("");
-  const [userData, setUserData] = useState();
   const [fileResume, setFileResume] = useState("");
   const [open, setOpen] = useState(false);
   const [chips, setChips] = useState([]);

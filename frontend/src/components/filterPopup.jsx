@@ -1,15 +1,8 @@
 import {
-  Card,
-  Checkbox,
-  ListItemPrefix,
-  Option,
-  Select,
-  Slider,
-  Typography,
+  ListItemPrefix
 } from "@material-tailwind/react";
 import { Button, List, ListItem, Modal } from "flowbite-react";
 import { Fragment, useState } from "react";
-import MultiRangeSlider from "./MultiRangeSlider/MultiRangeSlider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowDown,
@@ -20,8 +13,6 @@ import { Dialog, Transition } from "@headlessui/react";
 
 export default function FilterPopup(props) {
   const {
-    open,
-    handleClose,
     searchOptions,
     setSearchOptions,
     getData,

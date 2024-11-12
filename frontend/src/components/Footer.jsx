@@ -135,7 +135,7 @@ export default function Footer() {
             <h1 className="text-2xl font-semibold">Follow us</h1>
             <a
               className="w-28 font-semibold text-lg"
-              href="https://www.instagram.com/kha_martin/"
+              href="https://www.instagram.com/nishaaannt/"
               target="_blank"
               rel="noreferrer"
             >
@@ -143,7 +143,7 @@ export default function Footer() {
             </a>
             <a
               className="w-28 opacity-80 hover:opacity-100 font-semibold text-lg"
-              href="https://github.com/Nhat-Kha"
+              href="https://github.com/nishaaannnt"
               target="_blank"
               rel="noreferrer"
             >
